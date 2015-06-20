@@ -1,4 +1,5 @@
 import {React, Reflux, reactMixin} from '../init';
+import UploadApi from '../api/upload';
 
 export default class Upload extends React.Component { 
   render() {   
