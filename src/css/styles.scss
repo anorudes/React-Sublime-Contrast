@@ -1,14 +1,5 @@
 @import '_libs/mixin';
 
-.section-header {
-  .brand-logo {
-    padding-left: 20px;
-  }
-}
+@import '_partials/header';
+@import '_partials/upload';
 
-.section-upload {
-  width: 60%;
-  height: 300px;
-  @include border-radius(100%);
-  border: 1px dashed #ccc;  
-}

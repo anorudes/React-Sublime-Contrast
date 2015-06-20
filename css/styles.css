@@ -1,5 +1,40 @@
-.section-header .brand-logo {
-  padding-left: 20px; }
+.section-header {
+  margin-bottom: 40px; }
+  .section-header .brand-logo {
+    padding-left: 20px; }
+
+.upload {
+  width: 350px;
+  height: 230px;
+  margin: 0 auto;
+  border: 2px dashed #ccc;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  behavior: url(PIE.htc); }
+  .upload__container {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%); }
+  .upload__title {
+    display: block;
+    text-align: center;
+    font-size: 20px; }
+  .upload__choice {
+    text-align: center; }
+    .upload__choice .btn {
+      position: relative;
+      width: 180px;
+      cursor: pointer; }
+  .upload__hint {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    color: #ccc; }
+  .upload .icon {
+    margin: -3px 10px 0px 0px;
+    display: inline-block;
+    vertical-align: middle; }
 
 
 /*# sourceMappingURL=styles.css.map */

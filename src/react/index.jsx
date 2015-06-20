@@ -8,7 +8,7 @@ export default class App extends React.Component {
       <div>
         <nav className="section-header">
            <div className="nav-wrapper">
-             <a href="#" className="brand-logo">lower contrast</a>
+             <a href="#" className="brand-logo">Lower Contrast</a>
            </div>
          </nav>             
          <section className="section-upload">

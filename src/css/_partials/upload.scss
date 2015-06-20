@@ -1,0 +1,42 @@
+// ***************************************************************************
+// Upload
+// ***************************************************************************
+
+.upload {
+  width: 350px;
+  height: 230px;
+  margin: 0 auto;  
+  border: 2px dashed #ccc;    
+  @include border-radius(20px);
+  &__container {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  &__title {
+    display: block;
+    text-align: center;    
+    font-size: 20px;
+  }  
+  &__choice {
+    text-align: center;
+    .btn {
+      position: relative;
+      width: 180px;
+      cursor: pointer;    
+    }
+  }
+  &__hint {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    color: #ccc;    
+  }
+  .icon {    
+    margin: -3px 10px 0px 0px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
+
+
