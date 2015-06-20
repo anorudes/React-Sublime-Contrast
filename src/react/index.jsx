@@ -1,4 +1,5 @@
 import React from 'react/addons';
+import Upload from './components/upload';
 
 export default class App extends React.Component { 
   render() {   
@@ -10,6 +11,9 @@ export default class App extends React.Component {
              <a href="#" className="brand-logo">lower contrast</a>
            </div>
          </nav>             
+         <section className="section-upload">
+          <Upload />
+         </section>
       </div>
     );
   }
