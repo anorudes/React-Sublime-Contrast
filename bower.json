@@ -1,0 +1,12 @@
+{
+  "name": "lover-contrast",
+  "version": "0.0.0",
+  "homepage": "https://github.com/anorudes/lower-contrast",
+  "authors": [
+    "Maxim Varovin <anorudes@gmail.com>"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "materialize": "~0.96.1"
+  }
+}

@@ -1,7 +1,17 @@
 import React from 'react/addons';
-import Test from './components/test';
+
+export default class App extends React.Component { 
+  render() {   
+    const {props, state} = this;    
+    return (
+      <div>
+      </div>
+    );
+  }
+}
+
 
 React.render(
-  <Test />,
+  <App />,
   document.getElementById('app')
 );  
