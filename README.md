@@ -1,4 +1,4 @@
-# React ES6 Reflux boilerplate (node-webkit, gulp, webpack)
+# lower contrast
 
 ## About
 node-webkit<br />
