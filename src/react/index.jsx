@@ -1,5 +1,6 @@
 import React from 'react/addons';
 import Upload from './components/upload';
+import Result from './components/result';
 
 export default class App extends React.Component { 
   render() {   
@@ -13,6 +14,9 @@ export default class App extends React.Component {
          </nav>             
          <section className="section-upload">
           <Upload />
+         </section>
+         <section className="section-result">
+          <Result />
          </section>
       </div>
     );
