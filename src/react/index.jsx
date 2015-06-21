@@ -12,7 +12,7 @@ export default class App extends React.Component {
              <a href="#" className="brand-logo">Lower Contrast</a>
            </div>
          </nav>             
-         <section className="section-upload">
+         <section className="section-upload">         
           <Upload />
          </section>
          <section className="section-result">
