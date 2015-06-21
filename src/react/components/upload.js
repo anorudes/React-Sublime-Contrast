@@ -7,8 +7,8 @@ export default class Upload extends React.Component {
    super(props);
    this._onChangeFile = this._onChangeFile.bind(this); 
   }
-  _onChangeFile() {    
-    alert('1');
+  _onChangeFile() {        
+    themeActions.showOptions();    
   }
   render() {   
     const {props, state} = this;    

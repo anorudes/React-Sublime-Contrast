@@ -10,7 +10,7 @@ var themeStore = Reflux.createStore({
       showOptions: false
     },
     onUploadTheme() {
-      alert('1');
+      
     },
     onShowResult() {
       this.data.showResult = true;
@@ -21,7 +21,8 @@ var themeStore = Reflux.createStore({
       this.trigger(this.data);
     },    
     onShowOptions() {
-
+      this.data.showOptions = true;
+      this.trigger(this.data);
     },    
     onSetContrast(value) {
       this.data.contrastPercentage = value;
