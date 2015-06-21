@@ -41,7 +41,12 @@
     "webpack-dev-server": "^1.9.0"
   },
   "window": {
-    "show": true
+    "show": true,
+    "width": 600,
+    "height": 500,
+    "min_width": 600,
+    "min_height": 500,
+    "icon": "./icon.png"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
