@@ -16,9 +16,12 @@ export default class App extends React.Component {
              <a href="#" className="brand-logo">Lower Contrast</a>
            </div>
          </nav>             
-         <section className="section-upload">         
-          <Upload />
-         </section>
+
+         <If condition={ !state.showOptions }>
+           <section className="section-upload">         
+            <Upload />
+          </section>
+        </If>
 
          <If condition={ state.showOptions }>
           <section className="section-options">
