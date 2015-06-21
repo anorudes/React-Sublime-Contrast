@@ -9,8 +9,14 @@ export default class Result extends React.Component {
   render() {   
     const {props, state} = this;    
     return (
-      <div className="result">
-      </div>
+      <section className="result">
+        <div className="result__title">
+          Generated theme:
+        </div>
+        <div className="result__code">
+        test
+        </div>
+      </section>
     );
   }
 }

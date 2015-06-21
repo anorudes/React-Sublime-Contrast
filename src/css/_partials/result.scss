@@ -1,0 +1,27 @@
+.result {
+  margin: 0 auto;
+  width: 500px;
+  height: 300px;
+  border: 2px dashed #ccc;    
+  padding: 20px;
+  text-align: center;
+  @include border-radius(20px);  
+  @include transition-e(.6s);  
+  position: relative;
+  background: white;
+  top: -600px;
+  z-index: 10;  
+  &.show {
+    top: -230px;
+  }
+  &__title {
+    font-size: 16px;
+    color: #ccc;    
+  }
+  &__code {
+    text-align: left;
+    overflow: auto;
+    width: 100%;
+    max-height: 300px;    
+  }
+}

@@ -4,6 +4,8 @@
 
 .section-header {
   margin-bottom: 40px;
+  position: relative;
+  z-index: 11;
   .brand-logo {
     padding-left: 20px;
   }  
