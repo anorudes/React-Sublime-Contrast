@@ -1,7 +1,15 @@
 import {React, Reflux, reactMixin} from '../init';
 import ParserApi from '../api/parser';
+import themeActions from '../actions/theme';
 
 export default class Upload extends React.Component { 
+  constructor(props) {
+   super(props);
+   this._onChangeFile = this._onChangeFile.bind(this); 
+  }
+  _onChangeFile() {    
+    alert('1');
+  }
   render() {   
     const {props, state} = this;    
     return (
@@ -13,7 +21,7 @@ export default class Upload extends React.Component {
                <div className="btn">
                  <i className="large icon mdi-file-cloud-upload"></i>
                  <span>Upload</span>
-                 <input type="file" />
+                 <input type="file" onChange={ this._onChangeFile } />
                </div>
              </div>         
              <span className="upload__hint">

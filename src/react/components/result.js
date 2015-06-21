@@ -7,9 +7,10 @@ import themeStore from '../stores/theme';
 @reactMixin.decorate(Reflux.connect(themeStore))
 export default class Result extends React.Component { 
   render() {   
-    const {props, state} = this;    
+    const {props, state} = this; 
+    let cx = React.addons.classSet;        
     return (
-      <section className="result">
+      <section className={ cx({ 'result': true, 'result--show': state.showResult }) }>
         <div className="result__title">
           Generated theme:
         </div>

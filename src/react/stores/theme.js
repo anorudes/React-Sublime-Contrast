@@ -9,9 +9,17 @@ var themeStore = Reflux.createStore({
       showResult: false,
       showOptions: false
     },
-    onShowResult() {
-
+    onUploadTheme() {
+      alert('1');
     },
+    onShowResult() {
+      this.data.showResult = true;
+      this.trigger(this.data);
+    },
+    onHideResult() {
+      this.data.showResult = false;
+      this.trigger(this.data);
+    },    
     onShowOptions() {
 
     },    

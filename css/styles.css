@@ -58,7 +58,7 @@
   background: white;
   top: -600px;
   z-index: 10; }
-  .result.show {
+  .result--show {
     top: -230px; }
   .result__title {
     font-size: 16px;
