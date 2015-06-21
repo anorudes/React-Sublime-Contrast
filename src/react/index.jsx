@@ -29,7 +29,7 @@ export default class App extends React.Component {
           </section>         
         </If>
 
-         <If condition={ state.showResult }>
+         <If condition={ state.showOptions }>
           <section className="section-result">
             <Result />
           </section>

@@ -40,6 +40,7 @@
 
 .result {
   margin: 0 auto;
+  margin-bottom: 50px;
   width: 500px;
   height: 300px;
   border: 2px dashed #ccc;
@@ -49,17 +50,10 @@
   -moz-border-radius: 20px;
   border-radius: 20px;
   behavior: url(PIE.htc);
-  transition: all 0.6s ease;
-  -o-transition: all 0.6s ease;
-  -ms-transition: all 0.6s ease;
-  -moz-transition: all 0.6s ease;
-  -webkit-transition: all 0.6s ease;
   position: relative;
   background: white;
-  top: -600px;
-  z-index: 10; }
-  .result--show {
-    top: -230px; }
+  z-index: 10;
+  animation: .9s animateResult ease-in-out forwards; }
   .result__title {
     font-size: 16px;
     color: #ccc; }
@@ -68,6 +62,13 @@
     overflow: auto;
     width: 100%;
     max-height: 300px; }
+
+@keyframes animateResult {
+  0% {
+    top: -600px; }
+
+  100% {
+    top: 20px; } }
 
 .options {
   max-width: 400px;

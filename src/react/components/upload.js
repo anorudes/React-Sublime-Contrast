@@ -9,7 +9,6 @@ export default class Upload extends React.Component {
   }
   _onChangeFile() {        
     themeActions.uploadTheme();  
-    themeActions.showOptions();    
   }
   render() {   
     const {props, state} = this;    

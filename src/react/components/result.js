@@ -5,10 +5,9 @@ import themeActions from '../actions/theme';
 
 export default class Result extends React.Component { 
   render() {   
-    const {props, state} = this; 
-    let cx = React.addons.classSet;        
+    const {props, state} = this;     
     return (
-      <section className={ cx({ 'result': true, 'result--show': state.showResult }) }>
+      <section className="result" >
         <div className="result__title">
           Generated theme:
         </div>

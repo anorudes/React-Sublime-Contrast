@@ -5,25 +5,13 @@ var themeStore = Reflux.createStore({
     listenables: [themeActions],
     data: {
       brightnessPercentage: 0,
-      contrastPercentage: 0,
-      showResult: false,
+      contrastPercentage: 0,      
       showOptions: false
     },
     onUploadTheme() {
-      
-    },
-    onShowResult() {
-      this.data.showResult = true;
-      this.trigger(this.data);
-    },
-    onHideResult() {
-      this.data.showResult = false;
-      this.trigger(this.data);
-    },    
-    onShowOptions() {
       this.data.showOptions = true;
       this.trigger(this.data);
-    },    
+    },
     onSetContrast(value) {
       this.data.contrastPercentage = value;
       this.trigger(this.data);
