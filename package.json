@@ -45,8 +45,7 @@
     "show": true,
     "width": 600,
     "height": 500,
-    "min_width": 600,
-    "min_height": 500,
+    "resizable": false,
     "icon": "./icon.png"
   },
   "scripts": {

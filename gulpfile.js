@@ -65,10 +65,11 @@ gulp.task("connect", function() {
 });
 
 gulp.task('watch', function() {            
-    gulp.watch(['src/css/**/*.*'], ['sass']);            
+    gulp.watch(['src/css/**/*.*'], ['sass']);        
+    gulp.watch(['src/react/**/*.*'], ['react']);        
 });
 
-gulp.task('default', ['connect', 'sass', 'watch']);
+gulp.task('default', ['connect', 'react', 'sass', 'watch']);
 
 
 

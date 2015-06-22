@@ -10,7 +10,8 @@ var themeStore = Reflux.createStore({
     },
     onUploadTheme() {
       this.data.showOptions = true;
-      this.trigger(this.data);
+      this.trigger(this.data);      
+      WindowApi.stretch();
     },
     onSetContrast(value) {      
       this.data.contrastPercentage = value;              
