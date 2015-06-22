@@ -25,8 +25,8 @@ swallowError = function(error) {
 
 gulp.task('react', function() {
     var b = browserify({
-        entries: './src/react/index.jsx',
-        extensions: ['.jsx'],
+        entries: './src/react/index.js',
+        extensions: ['.js'],
         debug: true,
         transform: [
                  babelify.configure({
@@ -65,11 +65,10 @@ gulp.task("connect", function() {
 });
 
 gulp.task('watch', function() {            
-    gulp.watch(['src/css/**/*.*'], ['sass']);        
-    gulp.watch(['src/react/**/*.*'], ['react']);        
+    gulp.watch(['src/css/**/*.*'], ['sass']);            
 });
 
-gulp.task('default', ['connect', 'react', 'sass', 'watch']);
+gulp.task('default', ['connect', 'sass', 'watch']);
 
 
 
