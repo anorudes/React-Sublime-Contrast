@@ -3,7 +3,7 @@ import {React, Reflux, reactMixin} from '../init';
 export default class Upload extends React.Component { 
   componentDidMount() {    
     React.findDOMNode(this.refs.contrast).defaultValue = "0";
-    React.findDOMNode(this.refs.brightness).defaultValue = "0";
+    React.findDOMNode(this.refs.brightness).defaultValue = "0";    
   }
   render() {   
     const {props, state} = this;    

@@ -3,6 +3,7 @@ var webpack = require('webpack');
 
 module.exports = {
   devtool: 'eval',
+  //devtool: 'source-map'  
   entry: [
     'webpack-dev-server/client?http://localhost:3000',
     'webpack/hot/only-dev-server',
@@ -22,8 +23,7 @@ module.exports = {
   },
   module: {
     loaders: [{
-      test: /\.jsx?$/,
-      
+      test: /\.jsx?$/,      
       loaders: ['react-hot', 'babel?stage=0&plugins=jsx-control-statements/babel'],
       include: path.join(__dirname, 'src/react/')
     }]

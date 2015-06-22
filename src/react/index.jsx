@@ -4,12 +4,15 @@ import Upload from './components/upload';
 import Result from './components/result';
 import Options from './components/options';
 import themeStore from './stores/theme';
+//import gui from 'nw.gui';
+
+//debugger;
 
 @reactMixin.decorate(Reflux.connect(themeStore))
 export default class App extends React.Component { 
   render() {   
     const {props, state} = this;    
-    return (
+    return (      
       <div>
         <nav className="section-header">
            <div className="nav-wrapper">
