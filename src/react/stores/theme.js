@@ -12,12 +12,12 @@ var themeStore = Reflux.createStore({
       this.data.showOptions = true;
       this.trigger(this.data);
     },
-    onSetContrast(value) {
-      this.data.contrastPercentage = value;
+    onSetContrast(value) {      
+      this.data.contrastPercentage = value;              
       this.trigger(this.data);
     },
     onSetBrightness(value) {
-      this.data.brightnessPercentage = value;
+      this.data.brightnessPercentage = value;      
       this.trigger(this.data);
     },
     getInitialState() {
