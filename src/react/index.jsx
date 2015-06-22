@@ -1,49 +1,20 @@
-import {React, Reflux, reactMixin} from './init';
+import { React } from './init';
+import Main from './main';
+import Window from './api/window';
 
-import Upload from './components/upload';
-import Result from './components/result';
-import Options from './components/options';
-import themeStore from './stores/theme';
-//import gui from 'nw.gui';
+class App {
+  static config() {
 
-//debugger;
-
-@reactMixin.decorate(Reflux.connect(themeStore))
-export default class App extends React.Component { 
-  render() {   
-    const {props, state} = this;    
-    return (      
-      <div>
-        <nav className="section-header">
-           <div className="nav-wrapper">
-             <a href="#" className="brand-logo">Lower Contrast</a>
-           </div>
-         </nav>             
-
-         <If condition={ !state.showOptions }>
-           <section className="section-upload">         
-            <Upload />
-          </section>
-        </If>
-
-         <If condition={ state.showOptions }>
-          <section className="section-options">
-            <Options />
-          </section>         
-        </If>
-
-         <If condition={ state.showOptions }>
-          <section className="section-result">
-            <Result />
-          </section>
-        </If>
-      </div>
-    );
+  }
+  static render() {
+    React.render(
+      <Main />,
+      document.getElementById('app')
+    );  
   }
 }
 
+App.render();
+App.config();
 
-React.render(
-  <App />,
-  document.getElementById('app')
-);  
+
