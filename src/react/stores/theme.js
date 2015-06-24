@@ -17,7 +17,7 @@ var themeStore = Reflux.createStore({
       this._updateTheme();      
     },
     _updateTheme() {
-      this.data.themeContentNew = Parser.generate(this.data.themeContent, this.data.contrastPercentage, this.data.brightnessPercentage);
+      this.data.themeContentNew = Parser.generate(this.data.themeContent, this.data.saturatePercentage);
       this.trigger(this.data);       
     },
     onSetSaturate(value) {      

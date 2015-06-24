@@ -7,7 +7,7 @@ export default class Upload extends React.Component {
    this._onChangeSaturate = this._onChangeSaturate.bind(this);    
   }  
   componentDidMount() {    
-    React.findDOMNode(this.refs.saturate).defaultValue = "0";    
+    React.findDOMNode(this.refs.saturate).defaultValue = "100";    
   }
   _onChangeSaturate() {    
     let saturate = React.findDOMNode(this.refs.saturate).value;

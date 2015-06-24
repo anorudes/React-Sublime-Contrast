@@ -27,7 +27,7 @@ class WindowApi {
   }
 
   static stretch() {
-    win.resizeTo(600, 660);
+    win.resizeTo(600, 600);
   }
   static close() {
 
