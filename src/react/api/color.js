@@ -1,11 +1,7 @@
 import Color from 'color';
 
 export default class ColorApi {  
-  static brightness(color, percent) {
-    return color;
+  static saturate(color, percent) {    
+    Color(color).saturate(percent);
   }
-
-  static contrast(color, percent) {
-    return color;
-  }  
 }

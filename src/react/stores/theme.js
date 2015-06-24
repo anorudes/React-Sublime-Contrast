@@ -5,8 +5,7 @@ import Parser from '../api/parser';
 var themeStore = Reflux.createStore({
     listenables: [themeActions],
     data: {
-      brightnessPercentage: 0,
-      contrastPercentage: 0,      
+      saturatePercentage: 0,      
       showOptions: false,
       themeContentDefault: null,
       themeContentNew: null
@@ -21,13 +20,8 @@ var themeStore = Reflux.createStore({
       this.data.themeContentNew = Parser.generate(this.data.themeContent, this.data.contrastPercentage, this.data.brightnessPercentage);
       this.trigger(this.data);       
     },
-    onSetContrast(value) {      
-      this.data.contrastPercentage = value;              
-      this.trigger(this.data);
-      this._updateTheme();
-    },
-    onSetBrightness(value) {
-      this.data.brightnessPercentage = value;      
+    onSetSaturate(value) {      
+      this.data.saturatePercentage = value;              
       this.trigger(this.data);
       this._updateTheme();
     },

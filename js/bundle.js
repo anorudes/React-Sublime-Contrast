@@ -25146,7 +25146,7 @@ var _reflux = require("reflux");
 
 var _reflux2 = _interopRequireDefault(_reflux);
 
-var themeActions = _reflux2["default"].createActions(["uploadTheme", "setContrast", "setBrightness"]);
+var themeActions = _reflux2["default"].createActions(["uploadTheme", "setSaturate"]);
 
 module.exports = themeActions;
 
@@ -25173,14 +25173,9 @@ var ColorApi = (function () {
   }
 
   _createClass(ColorApi, null, [{
-    key: 'brightness',
-    value: function brightness(color, percent) {
-      return color;
-    }
-  }, {
-    key: 'contrast',
-    value: function contrast(color, percent) {
-      return color;
+    key: 'saturate',
+    value: function saturate(color, percent) {
+      (0, _color2['default'])(color).saturate(percent);
     }
   }]);
 
@@ -25214,16 +25209,13 @@ var ParserApi = (function () {
 
   _createClass(ParserApi, null, [{
     key: 'generate',
-    value: function generate(themeContent, contrast, brightness) {
-      // ColorApi.contrast(color, contrast)
-      // ColorApi.brightness(color, contrast)   
+    value: function generate(themeContent, saturate) {
       var regex = /#.{6}/gi;
       var result = undefined;
       var newThemeContent = themeContent;
       while ((result = regex.exec(themeContent)) != null) {
         var color = result[0];
-        color = _color2['default'].brightness(color, brightness);
-        color = _color2['default'].contrast(color, contrast);
+        color = _color2['default'].saturate(color, saturate);
       }
       return newThemeContent;
     }
@@ -25263,8 +25255,7 @@ var Upload = (function (_React$Component) {
     _classCallCheck(this, Upload);
 
     _get(Object.getPrototypeOf(Upload.prototype), 'constructor', this).call(this, props);
-    this._onChangeContrast = this._onChangeContrast.bind(this);
-    this._onChangeBrightness = this._onChangeBrightness.bind(this);
+    this._onChangeSaturate = this._onChangeSaturate.bind(this);
   }
 
   _inherits(Upload, _React$Component);
@@ -25272,20 +25263,13 @@ var Upload = (function (_React$Component) {
   _createClass(Upload, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
-      _init.React.findDOMNode(this.refs.contrast).defaultValue = '0';
-      _init.React.findDOMNode(this.refs.brightness).defaultValue = '0';
+      _init.React.findDOMNode(this.refs.saturate).defaultValue = '0';
     }
   }, {
-    key: '_onChangeContrast',
-    value: function _onChangeContrast() {
-      var contrast = _init.React.findDOMNode(this.refs.contrast).value;
-      _actionsTheme2['default'].setContrast(contrast);
-    }
-  }, {
-    key: '_onChangeBrightness',
-    value: function _onChangeBrightness() {
-      var brightness = _init.React.findDOMNode(this.refs.contrast).value;
-      _actionsTheme2['default'].setBrightness(brightness);
+    key: '_onChangeSaturate',
+    value: function _onChangeSaturate() {
+      var saturate = _init.React.findDOMNode(this.refs.saturate).value;
+      _actionsTheme2['default'].setSaturate(saturate);
     }
   }, {
     key: 'render',
@@ -25302,19 +25286,9 @@ var Upload = (function (_React$Component) {
           _init.React.createElement(
             'label',
             { 'class': 'active' },
-            'Contrast:'
+            'Saturate:'
           ),
-          _init.React.createElement('input', { type: 'range', ref: 'contrast', id: 'contrast', min: '0', max: '100', onChange: this._onChangeContrast })
-        ),
-        _init.React.createElement(
-          'p',
-          { className: 'range-field' },
-          _init.React.createElement(
-            'label',
-            { 'class': 'active' },
-            'Brightness:'
-          ),
-          _init.React.createElement('input', { type: 'range', ref: 'brightness', id: 'brightness', min: '0', max: '100', onChange: this._onChangeBrightness })
+          _init.React.createElement('input', { type: 'range', ref: 'saturate', min: '0', max: '100', onChange: this._onChangeSaturate })
         )
       );
     }
@@ -25630,8 +25604,7 @@ var _apiParser2 = _interopRequireDefault(_apiParser);
 var themeStore = _reflux2['default'].createStore({
   listenables: [_actionsTheme2['default']],
   data: {
-    brightnessPercentage: 0,
-    contrastPercentage: 0,
+    saturatePercentage: 0,
     showOptions: false,
     themeContentDefault: null,
     themeContentNew: null
@@ -25646,13 +25619,8 @@ var themeStore = _reflux2['default'].createStore({
     this.data.themeContentNew = _apiParser2['default'].generate(this.data.themeContent, this.data.contrastPercentage, this.data.brightnessPercentage);
     this.trigger(this.data);
   },
-  onSetContrast: function onSetContrast(value) {
-    this.data.contrastPercentage = value;
-    this.trigger(this.data);
-    this._updateTheme();
-  },
-  onSetBrightness: function onSetBrightness(value) {
-    this.data.brightnessPercentage = value;
+  onSetSaturate: function onSetSaturate(value) {
+    this.data.saturatePercentage = value;
     this.trigger(this.data);
     this._updateTheme();
   },

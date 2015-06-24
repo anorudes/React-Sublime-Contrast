@@ -1,9 +1,8 @@
 import Reflux from 'reflux';
 
 var themeActions = Reflux.createActions([
-    "uploadTheme",
-    "setContrast",
-    "setBrightness"
+    "uploadTheme",    
+    "setSaturate"
 ]);
 
 module.exports = themeActions;
