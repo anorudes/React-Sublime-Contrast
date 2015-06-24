@@ -1,4 +1,6 @@
-export default class ColorApi {
+import Color from 'color';
+
+export default class ColorApi {  
   static brightness(color, percent) {
     return color;
   }
