@@ -27,7 +27,7 @@ gulp.task('react', function() {
     var b = browserify({
         entries: './src/react/index.js',
         extensions: ['.js'],
-        debug: true,
+        debug: false,
         transform: [
                  babelify.configure({
                    stage: 0,   
@@ -38,8 +38,7 @@ gulp.task('react', function() {
     b.bundle().on('error', function(err) {
         notify().write(err.toString());
         this.emit("end");
-    }).pipe(source('bundle.js'))
-    .pipe(streamify(uglify()))
+    }).pipe(source('bundle.js'))    
     .pipe(gulp.dest('js/'))
     .pipe($.connect.reload());
 });

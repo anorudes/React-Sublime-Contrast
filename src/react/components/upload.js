@@ -7,8 +7,10 @@ export default class Upload extends React.Component {
    super(props);
    this._onChangeFile = this._onChangeFile.bind(this); 
   }
-  _onChangeFile() {            
-    themeActions.uploadTheme();  
+  _onChangeFile() {                
+    WindowApi.stretch();    
+    let filePath = React.findDOMNode(this.refs.file).value;
+    themeActions.uploadTheme(filePath);    
   }
   render() {   
     const {props, state} = this;    
@@ -21,7 +23,7 @@ export default class Upload extends React.Component {
                <div className="btn">
                  <i className="large icon mdi-file-cloud-upload"></i>
                  <span>Upload</span>
-                 <input type="file" onChange={ this._onChangeFile } />
+                 <input type="file" ref="file" onChange={ this._onChangeFile } />
                </div>
              </div>         
              <span className="upload__hint">
