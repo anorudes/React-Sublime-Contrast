@@ -25210,11 +25210,11 @@ var ParserApi = (function () {
   _createClass(ParserApi, null, [{
     key: 'generate',
     value: function generate(themeContent, saturate) {
-      var regex = /#.{6}/gi;
+      var regex = /(#.*)\</gi;
       var result = undefined;
       var newThemeContent = themeContent;
       while ((result = regex.exec(themeContent)) != null) {
-        var color = result[0];
+        var color = result[1];
         color = _color2['default'].saturate(color, saturate);
       }
       return newThemeContent;
