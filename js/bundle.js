@@ -23608,11 +23608,16 @@ var ParserApi = (function () {
     key: 'generate',
     value: function generate(themeContent, contrast, brightness) {
       // ColorApi.contrast(color, contrast)
-      // ColorApi.brightness(color, contrast)       
-      var color = undefined;
-      while ((color = /#.{6}/gi.exec(themeContent)) != null) {
-        console.log(color[0]);
+      // ColorApi.brightness(color, contrast)   
+      var regex = /#.{6}/gi;
+      var result = undefined;
+      var newThemeContent = themeContent;
+      while ((result = regex.exec(themeContent)) != null) {
+        var color = result[0];
+        color = _color2['default'].brightness(color, brightness);
+        color = _color2['default'].contrast(color, contrast);
       }
+      return newThemeContent;
     }
   }]);
 
@@ -23766,7 +23771,7 @@ var Result = (function (_React$Component) {
         _init.React.createElement(
           'div',
           { className: 'result__code' },
-          'test'
+          props.themeContent
         )
       );
     }
@@ -23980,7 +23985,7 @@ var Main = (function (_React$Component) {
         state.showOptions ? _init.React.createElement(
           'section',
           { className: 'section-result' },
-          _init.React.createElement(_componentsResult2['default'], null)
+          _init.React.createElement(_componentsResult2['default'], { themeContent: state.themeContentNew })
         ) : ''
       );
     }

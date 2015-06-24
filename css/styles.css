@@ -46,12 +46,13 @@
   border: 2px dashed #ccc;
   padding: 20px;
   text-align: center;
-  -webkit-border-radius: 20px;
-  -moz-border-radius: 20px;
-  border-radius: 20px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
   behavior: url(PIE.htc);
   position: relative;
   background: white;
+  overflow: hidden;
   z-index: 10;
   animation: .9s animateResult ease-in-out forwards; }
   .result__title {
@@ -61,7 +62,11 @@
     text-align: left;
     overflow: auto;
     width: 100%;
-    max-height: 300px; }
+    max-height: 230px;
+    font-size: 10px;
+    margin-top: 12px;
+    white-space: nowrap;
+    white-space: pre; }
 
 @keyframes animateResult {
   0% {

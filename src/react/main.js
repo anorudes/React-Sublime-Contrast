@@ -31,7 +31,7 @@ export default class Main extends React.Component {
 
          <If condition={ state.showOptions }>
           <section className="section-result">
-            <Result />
+            <Result themeContent={state.themeContentNew} />
           </section>
         </If>
       </div>

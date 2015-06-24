@@ -12,7 +12,7 @@ export default class Result extends React.Component {
           Generated theme:
         </div>
         <div className="result__code">
-        test
+        { props.themeContent }
         </div>
       </section>
     );
