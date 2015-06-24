@@ -3,7 +3,7 @@
 var gui = require('nw.gui');
 var win = gui.Window.get();
 var fs = require("fs");
-console.log(fs);
+
 class WindowApi {
   static menu() {    
     var windowMenu = new gui.Menu({
