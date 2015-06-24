@@ -23606,7 +23606,14 @@ var ParserApi = (function () {
 
   _createClass(ParserApi, null, [{
     key: 'generate',
-    value: function generate(themeContent, contrast, brightness) {}
+    value: function generate(themeContent, contrast, brightness) {
+      // ColorApi.contrast(color, contrast)
+      // ColorApi.brightness(color, contrast)       
+      var color = undefined;
+      while ((color = /#.{6}/gi.exec(themeContent)) != null) {
+        console.log(color[0]);
+      }
+    }
   }]);
 
   return ParserApi;
@@ -23614,9 +23621,6 @@ var ParserApi = (function () {
 
 exports['default'] = ParserApi;
 module.exports = exports['default'];
-
-// ColorApi.contrast(color, contrast)
-// ColorApi.brightness(color, contrast)
 
 },{"./color":199}],201:[function(require,module,exports){
 'use strict';
