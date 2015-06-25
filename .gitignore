@@ -8,5 +8,5 @@ bower_components
 *.TMP
 data-cache
 toDo
-js/bundle.js
+bundle.js
 data-cash

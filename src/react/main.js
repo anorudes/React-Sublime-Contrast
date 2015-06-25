@@ -4,6 +4,7 @@ import Upload from './components/upload';
 import Result from './components/result';
 import Options from './components/options';
 import Previews from './components/previews';
+import Save from './components/save';
 import themeStore from './stores/theme';
 
 @reactMixin.decorate(Reflux.connect(themeStore))
@@ -30,12 +31,14 @@ export default class Main extends React.Component {
           </section>         
         </If>
 
-         <If condition={ state.showOptions }>
-          <div>
+         <If condition={ state.showOptions }>          
             <section className="section-previews">
               <Previews colors={state.colors} />
-            </section>
-          </div>
+            </section>          
+        </If>
+
+        <If condition={ state.showOptions }>          
+          <Save />
         </If>
       </div>
     );

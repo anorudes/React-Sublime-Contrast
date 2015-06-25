@@ -36,7 +36,7 @@ var App = (function () {
 App.config();
 App.render();
 
-},{"./init":211,"./main":212}],2:[function(require,module,exports){
+},{"./init":212,"./main":213}],2:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -25186,7 +25186,7 @@ var _reflux = require("reflux");
 
 var _reflux2 = _interopRequireDefault(_reflux);
 
-var themeActions = _reflux2["default"].createActions(["uploadTheme", "setSaturate"]);
+var themeActions = _reflux2["default"].createActions(["uploadTheme", "saveTheme", "setSaturate"]);
 
 module.exports = themeActions;
 
@@ -25345,7 +25345,7 @@ var Upload = (function (_React$Component) {
 exports['default'] = Upload;
 module.exports = exports['default'];
 
-},{"../actions/theme":204,"../init":211}],208:[function(require,module,exports){
+},{"../actions/theme":204,"../init":212}],208:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -25411,7 +25411,7 @@ var Previews = (function (_React$Component2) {
   }, {
     key: "_resize",
     value: function _resize() {
-      WindowApi.setHeight(Math.ceil(this.props.colors.length / 13) * 100);
+      WindowApi.setHeight(Math.ceil(this.props.colors.length / 13) * 100 + 60);
     }
   }, {
     key: "render",
@@ -25435,7 +25435,7 @@ var Previews = (function (_React$Component2) {
 exports["default"] = Previews;
 module.exports = exports["default"];
 
-},{"../init":211}],209:[function(require,module,exports){
+},{"../init":212}],209:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -25500,7 +25500,61 @@ var Result = (function (_React$Component) {
 exports['default'] = Result;
 module.exports = exports['default'];
 
-},{"../actions/theme":204,"../api/parser":206,"../init":211}],210:[function(require,module,exports){
+},{"../actions/theme":204,"../api/parser":206,"../init":212}],210:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
+
+var _init = require('../init');
+
+var _actionsTheme = require('../actions/theme');
+
+var _actionsTheme2 = _interopRequireDefault(_actionsTheme);
+
+var Save = (function (_React$Component) {
+  function Save() {
+    _classCallCheck(this, Save);
+
+    if (_React$Component != null) {
+      _React$Component.apply(this, arguments);
+    }
+  }
+
+  _inherits(Save, _React$Component);
+
+  _createClass(Save, [{
+    key: 'render',
+    value: function render() {
+      return _init.React.createElement(
+        'div',
+        { className: 'save-button' },
+        _init.React.createElement(
+          'a',
+          { className: 'waves-effect waves-light btn', onClick: _actionsTheme2['default'].saveTheme.bind(this) },
+          _init.React.createElement('i', { className: 'material-icons left' }),
+          'Save'
+        )
+      );
+    }
+  }]);
+
+  return Save;
+})(_init.React.Component);
+
+exports['default'] = Save;
+module.exports = exports['default'];
+
+},{"../actions/theme":204,"../init":212}],211:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -25595,7 +25649,7 @@ var Upload = (function (_React$Component) {
 exports['default'] = Upload;
 module.exports = exports['default'];
 
-},{"../actions/theme":204,"../api/parser":206,"../init":211}],211:[function(require,module,exports){
+},{"../actions/theme":204,"../api/parser":206,"../init":212}],212:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -25620,7 +25674,7 @@ exports.React = _reactAddons2['default'];
 exports.Reflux = _reflux2['default'];
 exports.reactMixin = _reactMixin2['default'];
 
-},{"react-mixin":9,"react/addons":12,"reflux":184}],212:[function(require,module,exports){
+},{"react-mixin":9,"react/addons":12,"reflux":184}],213:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -25652,6 +25706,10 @@ var _componentsOptions2 = _interopRequireDefault(_componentsOptions);
 var _componentsPreviews = require('./components/previews');
 
 var _componentsPreviews2 = _interopRequireDefault(_componentsPreviews);
+
+var _componentsSave = require('./components/save');
+
+var _componentsSave2 = _interopRequireDefault(_componentsSave);
 
 var _storesTheme = require('./stores/theme');
 
@@ -25703,14 +25761,11 @@ var Main = (function (_React$Component) {
           _init.React.createElement(_componentsOptions2['default'], null)
         ) : '',
         state.showOptions ? _init.React.createElement(
-          'div',
-          null,
-          _init.React.createElement(
-            'section',
-            { className: 'section-previews' },
-            _init.React.createElement(_componentsPreviews2['default'], { colors: state.colors })
-          )
-        ) : ''
+          'section',
+          { className: 'section-previews' },
+          _init.React.createElement(_componentsPreviews2['default'], { colors: state.colors })
+        ) : '',
+        state.showOptions ? _init.React.createElement(_componentsSave2['default'], null) : ''
       );
     }
   }]);
@@ -25722,7 +25777,7 @@ var Main = (function (_React$Component) {
 exports['default'] = Main;
 module.exports = exports['default'];
 
-},{"./components/options":207,"./components/previews":208,"./components/result":209,"./components/upload":210,"./init":211,"./stores/theme":213}],213:[function(require,module,exports){
+},{"./components/options":207,"./components/previews":208,"./components/result":209,"./components/save":210,"./components/upload":211,"./init":212,"./stores/theme":214}],214:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -25757,6 +25812,9 @@ var themeStore = _reflux2['default'].createStore({
     var themeContent = fs.readFileSync(filePath, 'utf8');
     this.data.themeContent = themeContent;
     this._updateTheme();
+  },
+  onSaveTheme: function onSaveTheme(filePath) {
+    alert('1');
   },
   _updateTheme: function _updateTheme() {
     var generate = _apiParser2['default'].generate(this.data.themeContent, this.data.saturatePercentage);
