@@ -20,7 +20,7 @@ export default class Previews extends React.Component {
    this._resize();
   }  
   _resize() {
-    WindowApi.setHeight( Math.ceil(this.props.colors.length / 13) * 100 + 130);     
+    WindowApi.setHeight( Math.ceil(this.props.colors.length / 13) * 100 + 100);     
   }
   render() {   
     const {props, state} = this;     

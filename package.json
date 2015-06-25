@@ -47,6 +47,7 @@
     "page-cache": false
   },
   "window": {
+    "toolbar": false,
     "show": true,
     "width": 600,
     "height": 500,
