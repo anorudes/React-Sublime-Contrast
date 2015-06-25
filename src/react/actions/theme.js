@@ -3,7 +3,7 @@ import Reflux from 'reflux';
 var themeActions = Reflux.createActions([
     "uploadTheme",
     "saveTheme",    
-    "setSaturate",    
+    "setRange",    
 ]);
 
 module.exports = themeActions;

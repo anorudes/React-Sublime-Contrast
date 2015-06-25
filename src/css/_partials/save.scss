@@ -3,9 +3,9 @@
   margin-top: 10px;  
   -webkit-animation: .5s animateSaveButton ease-in-out forwards;
 }
-.file-path {
-  display: block;
-  text-align: center;
+.file-path {  
+  position: absolute;
+  margin-left: 15px;  
   font-size: 14px;  
   color: #ccc;
   padding-top: 5px;
