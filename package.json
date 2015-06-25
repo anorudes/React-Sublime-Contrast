@@ -38,7 +38,6 @@
     "react": "^0.13.3",
     "react-hot-loader": "^1.2.7",
     "react-mixin": "^1.2.3",
-    "react-notification-system": "^0.1.11",
     "reflux": "^0.2.7",
     "vinyl-source-stream": "^1.1.0",
     "webpack": "^1.9.10",
