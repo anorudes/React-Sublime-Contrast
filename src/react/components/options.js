@@ -8,14 +8,12 @@ export default class Upload extends React.Component {
   }  
   componentDidMount() {    
     React.findDOMNode(this.refs.saturate).defaultValue = "100";    
-    React.findDOMNode(this.refs.brightness).defaultValue = "100";    
-    React.findDOMNode(this.refs.contrast).defaultValue = "100";    
+    React.findDOMNode(this.refs.brightness).defaultValue = "100";        
   }
   _onChange() {    
-    let saturate = React.findDOMNode(this.refs.saturate).value;
-    let contrast = React.findDOMNode(this.refs.contrast).value;
+    let saturate = React.findDOMNode(this.refs.saturate).value;    
     let brightness = React.findDOMNode(this.refs.brightness).value;    
-    themeActions.setRange(saturate, contrast, brightness);
+    themeActions.setRange(saturate, brightness);
   }    
   render() {   
     const {props, state} = this;    
@@ -24,10 +22,6 @@ export default class Upload extends React.Component {
            <p className="range-field">
              <label class="active">Saturate:</label>
              <input type="range" ref="saturate" min="0" max="100" onChange={  this._onChange } />
-           </p>          
-           <p className="range-field">
-             <label class="active">Contrast:</label>
-             <input type="range" ref="contrast" min="0" max="100" onChange={  this._onChange } />
            </p>          
            <p className="range-field">
              <label class="active">Brightness:</label>

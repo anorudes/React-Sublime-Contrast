@@ -16,13 +16,13 @@
 			<key>settings</key>
 			<dict>
 				<key>background</key>
-				<string>#20333c/string>
+				<string>#263238/string>
 				<key>caret</key>
-				<string>#bbc3d3/string>
+				<string>#c0c5ce/string>
 				<key>foreground</key>
-				<string>#c9d2e4/string>
+				<string>#cdd3de/string>
 				<key>invisibles</key>
-				<string>#5e7687/string>
+				<string>#65737e/string>
 				<key>lineHighlight</key>
 				<string>#00000030</string>
 				<key>selection</key>
@@ -34,9 +34,9 @@
 				<key>activeGuide</key>
 				<string>#80CBC450</string>
 				<key>gutterForeground</key>
-				<string>#2f4956/string>
+				<string>#37474f/string>
 				<key>findHighlight</key>
-				<string>#ffeb14/string>
+				<string>#f8e71c/string>
 			</dict>
 		</dict>
 		<dict>
@@ -58,7 +58,7 @@
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>#c9d2e4/string>
+				<string>#cdd3de/string>
 			</dict>
 		</dict>
 		<dict>
@@ -69,7 +69,7 @@
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>#d585d5/string>
+				<string>#c594c5/string>
 			</dict>
 		</dict>
 		<dict>
@@ -80,7 +80,7 @@
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>#69e2d6/string>
+				<string>#80cbc4/string>
 			</dict>
 		</dict>
 		<dict>
@@ -91,7 +91,7 @@
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>#69e2d6/string>
+				<string>#80cbc4/string>
 			</dict>
 		</dict>
 		<dict>
@@ -102,7 +102,7 @@
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>#487184/string>
+				<string>#546e7a/string>
 			</dict>
 		</dict>
 		<dict>
@@ -113,7 +113,7 @@
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>#487184/string>
+				<string>#546e7a/string>
 			</dict>
 		</dict>
 		<dict>
@@ -124,7 +124,7 @@
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>#69e2d6/string>
+				<string>#80cbc4/string>
 			</dict>
 		</dict>
 		<dict>
@@ -135,7 +135,7 @@
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>#69e2d6/string>
+				<string>#80cbc4/string>
 			</dict>
 		</dict>
 		<dict>
@@ -146,7 +146,7 @@
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>#69e2d6/string>
+				<string>#80cbc4/string>
 			</dict>
 		</dict>
 		<dict>
@@ -157,7 +157,7 @@
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>#69e2d6/string>
+				<string>#80cbc4/string>
 			</dict>
 		</dict>
 		<dict>
@@ -168,7 +168,7 @@
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>#69e2d6/string>
+				<string>#80cbc4/string>
 			</dict>
 		</dict>
 		<dict>
@@ -179,7 +179,7 @@
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>#ff4d55/string>
+				<string>#ec5f67/string>
 			</dict>
 		</dict>
 		<dict>
@@ -190,7 +190,7 @@
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>#ff4d5b/string>
+				<string>#eb606b/string>
 			</dict>
 		</dict>
 		<dict>
@@ -201,7 +201,7 @@
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>#4599ed/string>
+				<string>#6699cc/string>
 			</dict>
 		</dict>
 		<dict>
@@ -212,7 +212,7 @@
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>#ff6b6e/string>
+				<string>#f2777a/string>
 			</dict>
 		</dict>
 		<dict>
@@ -223,7 +223,7 @@
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>#ffeb94/string>
+				<string>#ffeb95/string>
 			</dict>
 		</dict>
 		<dict>
@@ -234,7 +234,7 @@
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>#c8ff75/string>
+				<string>#c3e88d/string>
 			</dict>
 		</dict>
 		<dict>
@@ -245,7 +245,7 @@
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>#ce6fc1/string>
+				<string>#bb80b3/string>
 				<key>background</key>
 				<string />
 			</dict>
@@ -258,7 +258,7 @@
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>#ff4d55/string>
+				<string>#ec5f67/string>
 			</dict>
 		</dict>
 		<dict>
@@ -271,7 +271,7 @@
 				<key>fontStyle</key>
 				<string>italic</string>
 				<key>foreground</key>
-				<string>#ff4d55/string>
+				<string>#ec5f67/string>
 			</dict>
 		</dict>
 		<dict>
@@ -282,7 +282,7 @@
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>#d2dcee/string>
+				<string>#d8dee9/string>
 			</dict>
 		</dict>
 		<dict>
@@ -305,7 +305,7 @@ meta.selector.css entity.other.attribute-name.class, source.scss entity.other.at
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>#c8ff75/string>
+				<string>#c3e88d/string>
 				<key>background</key>
 				<string />
 			</dict>
@@ -318,7 +318,7 @@ meta.selector.css entity.other.attribute-name.class, source.scss entity.other.at
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>#c8ff75/string>
+				<string>#c3e88d/string>
 			</dict>
 		</dict>
 		<dict>
@@ -329,7 +329,7 @@ meta.selector.css entity.other.attribute-name.class, source.scss entity.other.at
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>#ffa805/string>
+				<string>#e8a01e/string>
 			</dict>
 		</dict>
 		<dict>
@@ -340,7 +340,7 @@ meta.selector.css entity.other.attribute-name.class, source.scss entity.other.at
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>#8cd784/string>
+				<string>#99c794/string>
 			</dict>
 		</dict>
 		<dict>
@@ -351,7 +351,7 @@ meta.selector.css entity.other.attribute-name.class, source.scss entity.other.at
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>#f09800/string>
+				<string>#ee9903/string>
 			</dict>
 		</dict>
 		<dict>
@@ -362,7 +362,7 @@ meta.selector.css entity.other.attribute-name.class, source.scss entity.other.at
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>#ce6fc1/string>
+				<string>#bb80b3/string>
 			</dict>
 		</dict>
 		<dict>
@@ -373,7 +373,7 @@ meta.selector.css entity.other.attribute-name.class, source.scss entity.other.at
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>#ff4d55/string>
+				<string>#ec5f67/string>
 			</dict>
 		</dict>
 		<dict>
@@ -384,7 +384,7 @@ meta.selector.css entity.other.attribute-name.class, source.scss entity.other.at
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>#ce6fc1/string>
+				<string>#bb80b3/string>
 			</dict>
 		</dict>
 		<dict>
@@ -395,7 +395,7 @@ meta.selector.css entity.other.attribute-name.class, source.scss entity.other.at
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>#69e2d6/string>
+				<string>#80cbc4/string>
 			</dict>
 		</dict>
 		<dict>
@@ -406,7 +406,7 @@ meta.selector.css entity.other.attribute-name.class, source.scss entity.other.at
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>#ff4d6d/string>
+				<string>#e6647c/string>
 			</dict>
 		</dict>
 		<dict>
@@ -428,7 +428,7 @@ meta.selector.css entity.other.attribute-name.class, source.scss entity.other.at
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>#ff4d6d/string>
+				<string>#e6647c/string>
 			</dict>
 		</dict>
 		<dict>
@@ -439,7 +439,7 @@ meta.selector.css entity.other.attribute-name.class, source.scss entity.other.at
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>#ff4d6d/string>
+				<string>#e6647c/string>
 			</dict>
 		</dict>
 		<dict>
@@ -450,7 +450,7 @@ meta.selector.css entity.other.attribute-name.class, source.scss entity.other.at
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>#ff4d6d/string>
+				<string>#e6647c/string>
 			</dict>
 		</dict>
 		<dict>
@@ -472,7 +472,7 @@ meta.selector.css entity.other.attribute-name.class, source.scss entity.other.at
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>#69e2d6/string>
+				<string>#80cbc4/string>
 			</dict>
 		</dict>
 
@@ -484,7 +484,7 @@ meta.selector.css entity.other.attribute-name.class, source.scss entity.other.at
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>#f09800/string>
+				<string>#ee9903/string>
 				<key>background</key>
 				<string>#c03e4430</string>
 			</dict>
@@ -497,7 +497,7 @@ meta.selector.css entity.other.attribute-name.class, source.scss entity.other.at
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>#67e4d8/string>
+				<string>#7fccc4/string>
 				<key>background</key>
 				<string />
 			</dict>
@@ -510,7 +510,7 @@ meta.selector.css entity.other.attribute-name.class, source.scss entity.other.at
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>#ff3729/string>
+				<string>#f44336/string>
 			</dict>
 		</dict>
 		<dict>
@@ -521,7 +521,7 @@ meta.selector.css entity.other.attribute-name.class, source.scss entity.other.at
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>#ffcb6b/string>
+				<string>#fac86e/string>
 			</dict>
 		</dict>
 		<dict>
@@ -532,7 +532,7 @@ meta.selector.css entity.other.attribute-name.class, source.scss entity.other.at
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>#c8ff75/string>
+				<string>#c3e88d/string>
 			</dict>
 		</dict>
 		<dict>
@@ -545,7 +545,7 @@ meta.selector.css entity.other.attribute-name.class, source.scss entity.other.at
 				<key>background</key>
 				<string>#f3f38dff</string>
 				<key>foreground</key>
-				<string>#ffa91f/string>
+				<string>#f9a825/string>
 			</dict>
 		</dict>
 		<dict>
@@ -634,7 +634,7 @@ meta.selector.css entity.other.attribute-name.class, source.scss entity.other.at
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>#ffd829/string>
+				<string>#fad430/string>
 			</dict>
 		</dict>
 	<dict>
@@ -645,7 +645,7 @@ meta.selector.css entity.other.attribute-name.class, source.scss entity.other.at
             <key>settings</key>
             <dict>
                 <key>foreground</key>
-                <string>#d11f00/string>
+                <string>#d02000/string>
             </dict>
         </dict><dict>
             <key>name</key>
@@ -665,7 +665,7 @@ meta.selector.css entity.other.attribute-name.class, source.scss entity.other.at
             <key>settings</key>
             <dict>
                 <key>foreground</key>
-                <string>#dbb700/string>
+                <string>#ddb700/string>
             </dict>
         </dict></array>
 	<key>uuid</key>

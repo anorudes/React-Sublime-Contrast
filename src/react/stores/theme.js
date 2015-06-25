@@ -6,8 +6,7 @@ var themeStore = Reflux.createStore({
     listenables: [themeActions],
     data: {
       filePath: null,
-      saturatePercentage: 100,
-      contrastPercentage: 100,
+      saturatePercentage: 100,      
       brightnessPercentage: 100,
       showOptions: false,
       themeContentDefault: null,  /* default theme content */
@@ -26,14 +25,13 @@ var themeStore = Reflux.createStore({
       fs.writeFile(newFilePath, this.data.themeContentNew);      
     },    
     _updateTheme() {
-      let generate = Parser.generate(this.data.themeContent, this.data.saturatePercentage, this.data.contrastPercentage, this.data.brightnessPercentage);
+      let generate = Parser.generate(this.data.themeContent, this.data.saturatePercentage, this.data.brightnessPercentage);
       this.data.themeContentNew = generate.newThemeContent;
       this.data.colors = generate.colors;
       this.trigger(this.data);       
     },
-    onSetRange(saturate, contrast, brightness) {      
-      this.data.saturatePercentage = saturate;              
-      this.data.contrastPercentage = contrast;              
+    onSetRange(saturate, brightness) {      
+      this.data.saturatePercentage = saturate;                    
       this.data.brightnessPercentage = brightness;              
       this.trigger(this.data);
       this._updateTheme();
