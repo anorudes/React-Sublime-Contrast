@@ -1,2 +1,2 @@
-.save-button{text-align:center;margin-top:10px}
+.save-button{text-align:center;margin-top:10px;-webkit-animation:.5s animateSaveButton ease-in-out forwards}@-webkit-keyframes animateSaveButton{0%{transform:translateY(30px);opacity:0}100%{transform:translateY(0px);opacity:1}}
 /*# sourceMappingURL=save.css.map */
