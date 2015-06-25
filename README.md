@@ -1,13 +1,11 @@
 # React Sublime Theme Contrast
 
 ## About
-gulp<br />
-react es6<br />
-babel es7 annotations<br />
-reflux<br />
-node-webkit
+The app that changes saturate and brightness Sublime Text theme
 
-Output dir: "out/"
+gulp, react es6, babel es7 annotations, reflux, node-webkit
+
+Output dir: ./out/
 
 ## Demo
 ```
