@@ -6,9 +6,9 @@ var themeStore = Reflux.createStore({
     listenables: [themeActions],
     data: {
       filePath: null,
-      saturatePercentage: 0,
-      contrastPercentage: 0,
-      brightnessPercentage: 0,
+      saturatePercentage: 100,
+      contrastPercentage: 100,
+      brightnessPercentage: 100,
       showOptions: false,
       themeContentDefault: null,  /* default theme content */
       themeContentNew: null, /* new generated theme content */

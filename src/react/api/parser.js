@@ -5,10 +5,9 @@ export default class ParserApi {
     let regex =  /(#[0-9a-fA-F]{3,6})\</gi;
     let colors = [];
     return { newThemeContent: themeContent.replace(regex, (match, color) => {       
-      saturate = saturate / 100;
-      let newColor = color;
-      newColor = saturate === 1 ? newColor : ColorApi.saturate(color, saturate / 100);      
-      colors.push(newColor);      
+      let newColor = color;      
+      newColor = ColorApi.saturate(newColor, saturate);
+      newColor = ColorApi.brightness(newColor, brightness);        
       return newColor; 
     }), colors: colors };
   }
