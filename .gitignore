@@ -6,5 +6,5 @@ bower_components
 *.map
 *.scssc
 *.TMP
-data-cash/Cache
-data-cash/GPUCache
+data-cache/Cache
+data-cache/GPUCache
