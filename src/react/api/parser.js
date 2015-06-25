@@ -6,8 +6,12 @@ export default class ParserApi {
     let colors = [];
     return { newThemeContent: themeContent.replace(regex, (match, color) => {       
       let newColor = color;      
-      newColor = ColorApi.saturate(newColor, saturate);
-      newColor = ColorApi.brightness(newColor, brightness);          
+      newColor = (saturate > 50) ? ColorApi.saturate(newColor, (saturate - 50) * 2) : newColor;
+      newColor = (saturate < 50) ? ColorApi.desaturate(newColor, (50 - saturate) * 2) : newColor;
+
+      newColor = (brightness > 50) ? ColorApi.brightness(newColor, (brightness - 50) * 2) : newColor;
+      newColor = (brightness < 50) ? ColorApi.darken(newColor, (50 - brightness) * 2) : newColor;
+      
       colors.push(newColor);
       return newColor; 
     }), colors: colors };
