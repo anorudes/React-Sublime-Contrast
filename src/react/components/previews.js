@@ -13,6 +13,15 @@ class Preview extends React.Component {
 }
 
 export default class Previews extends React.Component { 
+  componentWillUpdate() {    
+    this._resize();
+  }
+  componentDidMount() {       
+   this._resize();
+  }  
+  _resize() {
+    WindowApi.setHeight( Math.ceil(this.props.colors.length / 13) * 100 );     
+  }
   render() {   
     const {props, state} = this;     
     return (

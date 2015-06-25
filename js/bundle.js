@@ -25261,7 +25261,6 @@ var ParserApi = (function () {
       return { newThemeContent: themeContent.replace(regex, function (match, color) {
           var newColor = _color2['default'].saturate(color, saturate / 100);
           colors.push(newColor);
-          console.log(color + ';' + newColor);
           return newColor;
         }), colors: colors };
     }
@@ -25400,6 +25399,21 @@ var Previews = (function (_React$Component2) {
   _inherits(Previews, _React$Component2);
 
   _createClass(Previews, [{
+    key: "componentWillUpdate",
+    value: function componentWillUpdate() {
+      this._resize();
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this._resize();
+    }
+  }, {
+    key: "_resize",
+    value: function _resize() {
+      WindowApi.setHeight(Math.ceil(this.props.colors.length / 13) * 100);
+    }
+  }, {
     key: "render",
     value: function render() {
       var props = this.props;
@@ -25526,7 +25540,6 @@ var Upload = (function (_React$Component) {
   _createClass(Upload, [{
     key: '_onChangeFile',
     value: function _onChangeFile() {
-      WindowApi.stretch();
       var filePath = _init.React.findDOMNode(this.refs.file).value;
       _actionsTheme2['default'].uploadTheme(filePath);
     }

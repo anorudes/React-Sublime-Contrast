@@ -7,8 +7,7 @@ export default class Upload extends React.Component {
    super(props);
    this._onChangeFile = this._onChangeFile.bind(this); 
   }
-  _onChangeFile() {                
-    WindowApi.stretch();    
+  _onChangeFile() {                    
     let filePath = React.findDOMNode(this.refs.file).value;
     themeActions.uploadTheme(filePath);    
   }

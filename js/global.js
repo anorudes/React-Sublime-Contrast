@@ -25,12 +25,11 @@ class WindowApi {
     win.menu = windowMenu;
   }
 
-  static stretch() {
-    win.resizeTo(600, 660);
+  static setHeight(h) {  
+      console.log(h);          
+      win.height = h;    
   }
-  static close() {
 
-  }
   static init() {
     win.resizeTo(600, 450);
     WindowApi.menu();
