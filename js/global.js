@@ -3,6 +3,7 @@
 var gui = require('nw.gui');
 var win = gui.Window.get();
 var fs = require("fs");
+var path = require('path');
 
 class WindowApi {
   static menu() {    
@@ -26,7 +27,6 @@ class WindowApi {
   }
 
   static setHeight(h) {  
-      console.log(h);          
       win.height = h;    
   }
 

@@ -25778,6 +25778,7 @@ exports['default'] = Main;
 module.exports = exports['default'];
 
 },{"./components/options":207,"./components/previews":208,"./components/result":209,"./components/save":210,"./components/upload":211,"./init":212,"./stores/theme":214}],214:[function(require,module,exports){
+(function (process){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -25801,6 +25802,7 @@ var _apiParser2 = _interopRequireDefault(_apiParser);
 var themeStore = _reflux2['default'].createStore({
   listenables: [_actionsTheme2['default']],
   data: {
+    filePath: null,
     saturatePercentage: 0,
     showOptions: false,
     themeContentDefault: null, /* default theme content */
@@ -25810,11 +25812,13 @@ var themeStore = _reflux2['default'].createStore({
   onUploadTheme: function onUploadTheme(filePath) {
     this.data.showOptions = true;
     var themeContent = fs.readFileSync(filePath, 'utf8');
+    this.data.filePath = filePath;
     this.data.themeContent = themeContent;
     this._updateTheme();
   },
   onSaveTheme: function onSaveTheme(filePath) {
-    alert('1');
+    var newFilePath = path.dirname(process.execPath) + '/out/' + this.data.filePath.replace(/^.*[\\\/]/, '');
+    fs.writeFile(newFilePath, this.data.themeContentNew);
   },
   _updateTheme: function _updateTheme() {
     var generate = _apiParser2['default'].generate(this.data.themeContent, this.data.saturatePercentage);
@@ -25835,4 +25839,5 @@ var themeStore = _reflux2['default'].createStore({
 exports['default'] = themeStore;
 module.exports = exports['default'];
 
-},{"../actions/theme":204,"../api/parser":206,"reflux":184}]},{},[1]);
+}).call(this,require('_process'))
+},{"../actions/theme":204,"../api/parser":206,"_process":2,"reflux":184}]},{},[1]);

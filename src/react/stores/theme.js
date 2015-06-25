@@ -5,6 +5,7 @@ import Parser from '../api/parser';
 var themeStore = Reflux.createStore({
     listenables: [themeActions],
     data: {
+      filePath: null,
       saturatePercentage: 0,
       showOptions: false,
       themeContentDefault: null,  /* default theme content */
@@ -14,11 +15,13 @@ var themeStore = Reflux.createStore({
     onUploadTheme(filePath) {
       this.data.showOptions = true;      
       let themeContent = fs.readFileSync(filePath, "utf8");       
+      this.data.filePath = filePath;
       this.data.themeContent = themeContent;      
       this._updateTheme();      
     },
-    onSaveTheme(filePath) {
-      alert('1');
+    onSaveTheme(filePath) {      
+      let newFilePath = path.dirname(process.execPath) + '/out/' + this.data.filePath.replace(/^.*[\\\/]/, '');      
+      fs.writeFile(newFilePath, this.data.themeContentNew);      
     },    
     _updateTheme() {
       let generate = Parser.generate(this.data.themeContent, this.data.saturatePercentage);
