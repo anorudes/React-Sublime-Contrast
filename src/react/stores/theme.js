@@ -5,10 +5,11 @@ import Parser from '../api/parser';
 var themeStore = Reflux.createStore({
     listenables: [themeActions],
     data: {
-      saturatePercentage: 0,      
+      saturatePercentage: 0,
       showOptions: false,
-      themeContentDefault: null,
-      themeContentNew: null
+      themeContentDefault: null,  /* default theme content */
+      themeContentNew: null, /* new generated theme content */
+      colors: [] /* array of colors */
     },
     onUploadTheme(filePath) {
       this.data.showOptions = true;      
@@ -17,7 +18,9 @@ var themeStore = Reflux.createStore({
       this._updateTheme();      
     },
     _updateTheme() {
-      this.data.themeContentNew = Parser.generate(this.data.themeContent, this.data.saturatePercentage);
+      let generate = Parser.generate(this.data.themeContent, this.data.saturatePercentage);
+      this.data.themeContentNew = generate.newThemeContent;
+      this.data.colors = generate.colors;
       this.trigger(this.data);       
     },
     onSetSaturate(value) {      

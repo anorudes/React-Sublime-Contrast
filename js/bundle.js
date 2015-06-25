@@ -36,7 +36,7 @@ var App = (function () {
 App.config();
 App.render();
 
-},{"./init":210,"./main":211}],2:[function(require,module,exports){
+},{"./init":211,"./main":212}],2:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -25257,9 +25257,11 @@ var ParserApi = (function () {
     key: 'generate',
     value: function generate(themeContent, saturate) {
       var regex = /(#[0-9a-fA-F]{3,6})\</gi;
-      return themeContent.replace(regex, function (match, color) {
-        return _color2['default'].saturate(color, saturate / 100);
-      });
+      var colors = [];
+      return { newThemeContent: themeContent.replace(regex, function (match, color) {
+          _color2['default'].saturate(color, saturate / 100);
+          colors.push(color);
+        }), colors: colors };
     }
   }]);
 
@@ -25278,7 +25280,7 @@ Object.defineProperty(exports, '__esModule', {
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
@@ -25342,7 +25344,77 @@ var Upload = (function (_React$Component) {
 exports['default'] = Upload;
 module.exports = exports['default'];
 
-},{"../actions/theme":204,"../init":210}],208:[function(require,module,exports){
+},{"../actions/theme":204,"../init":211}],208:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
+
+var _init = require("../init");
+
+var Preview = (function (_React$Component) {
+  function Preview() {
+    _classCallCheck(this, Preview);
+
+    if (_React$Component != null) {
+      _React$Component.apply(this, arguments);
+    }
+  }
+
+  _inherits(Preview, _React$Component);
+
+  _createClass(Preview, [{
+    key: "render",
+    value: function render() {
+      var props = this.props;
+      var state = this.state;
+
+      return _init.React.createElement(
+        "div",
+        { className: "preview" },
+        "123"
+      );
+    }
+  }]);
+
+  return Preview;
+})(_init.React.Component);
+
+var Previews = (function (_React$Component2) {
+  function Previews() {
+    _classCallCheck(this, Previews);
+
+    if (_React$Component2 != null) {
+      _React$Component2.apply(this, arguments);
+    }
+  }
+
+  _inherits(Previews, _React$Component2);
+
+  _createClass(Previews, [{
+    key: "render",
+    value: function render() {
+      var props = this.props;
+      var state = this.state;
+
+      return _init.React.createElement("section", { className: "previews" });
+    }
+  }]);
+
+  return Previews;
+})(_init.React.Component);
+
+exports["default"] = Previews;
+module.exports = exports["default"];
+
+},{"../init":211}],209:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -25350,8 +25422,6 @@ Object.defineProperty(exports, '__esModule', {
 });
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
@@ -25373,7 +25443,9 @@ var Result = (function (_React$Component) {
   function Result() {
     _classCallCheck(this, Result);
 
-    _get(Object.getPrototypeOf(Result.prototype), 'constructor', this).apply(this, arguments);
+    if (_React$Component != null) {
+      _React$Component.apply(this, arguments);
+    }
   }
 
   _inherits(Result, _React$Component);
@@ -25407,7 +25479,7 @@ var Result = (function (_React$Component) {
 exports['default'] = Result;
 module.exports = exports['default'];
 
-},{"../actions/theme":204,"../api/parser":206,"../init":210}],209:[function(require,module,exports){
+},{"../actions/theme":204,"../api/parser":206,"../init":211}],210:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -25416,7 +25488,7 @@ Object.defineProperty(exports, '__esModule', {
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
@@ -25503,7 +25575,7 @@ var Upload = (function (_React$Component) {
 exports['default'] = Upload;
 module.exports = exports['default'];
 
-},{"../actions/theme":204,"../api/parser":206,"../init":210}],210:[function(require,module,exports){
+},{"../actions/theme":204,"../api/parser":206,"../init":211}],211:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -25528,7 +25600,7 @@ exports.React = _reactAddons2['default'];
 exports.Reflux = _reflux2['default'];
 exports.reactMixin = _reactMixin2['default'];
 
-},{"react-mixin":9,"react/addons":12,"reflux":184}],211:[function(require,module,exports){
+},{"react-mixin":9,"react/addons":12,"reflux":184}],212:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -25536,8 +25608,6 @@ Object.defineProperty(exports, '__esModule', {
 });
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
@@ -25559,6 +25629,10 @@ var _componentsOptions = require('./components/options');
 
 var _componentsOptions2 = _interopRequireDefault(_componentsOptions);
 
+var _componentsPreviews = require('./components/previews');
+
+var _componentsPreviews2 = _interopRequireDefault(_componentsPreviews);
+
 var _storesTheme = require('./stores/theme');
 
 var _storesTheme2 = _interopRequireDefault(_storesTheme);
@@ -25567,7 +25641,9 @@ var Main = (function (_React$Component) {
   function Main() {
     _classCallCheck(this, _Main);
 
-    _get(Object.getPrototypeOf(_Main.prototype), 'constructor', this).apply(this, arguments);
+    if (_React$Component != null) {
+      _React$Component.apply(this, arguments);
+    }
   }
 
   _inherits(Main, _React$Component);
@@ -25607,9 +25683,18 @@ var Main = (function (_React$Component) {
           _init.React.createElement(_componentsOptions2['default'], null)
         ) : '',
         state.showOptions ? _init.React.createElement(
-          'section',
-          { className: 'section-result' },
-          _init.React.createElement(_componentsResult2['default'], { themeContent: state.themeContentNew })
+          'div',
+          null,
+          _init.React.createElement(
+            'section',
+            { className: 'section-previews' },
+            _init.React.createElement(_componentsPreviews2['default'], null)
+          ),
+          _init.React.createElement(
+            'section',
+            { className: 'section-result' },
+            _init.React.createElement(_componentsResult2['default'], { themeContent: state.themeContentNew })
+          )
         ) : ''
       );
     }
@@ -25622,7 +25707,7 @@ var Main = (function (_React$Component) {
 exports['default'] = Main;
 module.exports = exports['default'];
 
-},{"./components/options":207,"./components/result":208,"./components/upload":209,"./init":210,"./stores/theme":212}],212:[function(require,module,exports){
+},{"./components/options":207,"./components/previews":208,"./components/result":209,"./components/upload":210,"./init":211,"./stores/theme":213}],213:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -25648,8 +25733,9 @@ var themeStore = _reflux2['default'].createStore({
   data: {
     saturatePercentage: 0,
     showOptions: false,
-    themeContentDefault: null,
-    themeContentNew: null
+    themeContentDefault: null, /* default theme content */
+    themeContentNew: null, /* new generated theme content */
+    colors: [] /* array of colors */
   },
   onUploadTheme: function onUploadTheme(filePath) {
     this.data.showOptions = true;
@@ -25658,7 +25744,9 @@ var themeStore = _reflux2['default'].createStore({
     this._updateTheme();
   },
   _updateTheme: function _updateTheme() {
-    this.data.themeContentNew = _apiParser2['default'].generate(this.data.themeContent, this.data.saturatePercentage);
+    var generate = _apiParser2['default'].generate(this.data.themeContent, this.data.saturatePercentage);
+    this.data.themeContentNew = generate.newThemeContent;
+    this.data.colors = generate.colors;
     this.trigger(this.data);
   },
   onSetSaturate: function onSetSaturate(value) {
