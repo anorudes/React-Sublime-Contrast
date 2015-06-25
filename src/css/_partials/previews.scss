@@ -1,0 +1,11 @@
+.previews {
+  text-align: center;
+  padding: 0px 20px;
+  .preview {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    margin: 10px;
+    border: 1px solid #ccc;
+  }
+}

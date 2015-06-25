@@ -33,10 +33,7 @@ export default class Main extends React.Component {
          <If condition={ state.showOptions }>
           <div>
             <section className="section-previews">
-              <Previews />
-            </section>
-            <section className="section-result">
-              <Result themeContent={ state.themeContentNew } />
+              <Previews colors={state.colors} />
             </section>
           </div>
         </If>

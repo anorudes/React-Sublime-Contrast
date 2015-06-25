@@ -25259,8 +25259,10 @@ var ParserApi = (function () {
       var regex = /(#[0-9a-fA-F]{3,6})\</gi;
       var colors = [];
       return { newThemeContent: themeContent.replace(regex, function (match, color) {
-          _color2['default'].saturate(color, saturate / 100);
-          colors.push(color);
+          var newColor = _color2['default'].saturate(color, saturate / 100);
+          colors.push(newColor);
+          console.log(color + ';' + newColor);
+          return newColor;
         }), colors: colors };
     }
   }]);
@@ -25376,11 +25378,10 @@ var Preview = (function (_React$Component) {
       var props = this.props;
       var state = this.state;
 
-      return _init.React.createElement(
-        "div",
-        { className: "preview" },
-        "123"
-      );
+      var style = {
+        backgroundColor: props.color
+      };
+      return _init.React.createElement("div", { className: "preview", style: style });
     }
   }]);
 
@@ -25404,7 +25405,13 @@ var Previews = (function (_React$Component2) {
       var props = this.props;
       var state = this.state;
 
-      return _init.React.createElement("section", { className: "previews" });
+      return _init.React.createElement(
+        "section",
+        { className: "previews" },
+        props.colors.map(function (color) {
+          return _init.React.createElement(Preview, { color: color });
+        }, this)
+      );
     }
   }]);
 
@@ -25688,12 +25695,7 @@ var Main = (function (_React$Component) {
           _init.React.createElement(
             'section',
             { className: 'section-previews' },
-            _init.React.createElement(_componentsPreviews2['default'], null)
-          ),
-          _init.React.createElement(
-            'section',
-            { className: 'section-result' },
-            _init.React.createElement(_componentsResult2['default'], { themeContent: state.themeContentNew })
+            _init.React.createElement(_componentsPreviews2['default'], { colors: state.colors })
           )
         ) : ''
       );
