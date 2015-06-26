@@ -2,17 +2,17 @@ import {React, Reflux, reactMixin} from '../init';
 import ParserApi from '../api/parser';
 import themeActions from '../actions/theme';
 
-export default class Upload extends React.Component { 
+export default class Upload extends React.Component {
   constructor(props) {
    super(props);
-   this._onChangeFile = this._onChangeFile.bind(this); 
+   this.onChangeFile = this.onChangeFile.bind(this);
   }
-  _onChangeFile() {                    
+  onChangeFile() {
     let filePath = React.findDOMNode(this.refs.file).value;
-    themeActions.uploadTheme(filePath);    
+    themeActions.uploadTheme(filePath);
   }
-  render() {   
-    const {props, state} = this;    
+  render() {
+    const {props, state} = this;
     return (
       <div className="upload">
         <div className="upload__container">
@@ -22,9 +22,9 @@ export default class Upload extends React.Component {
                <div className="btn">
                  <i className="large icon mdi-file-cloud-upload"></i>
                  <span>Upload</span>
-                 <input type="file" ref="file" onChange={ this._onChangeFile } />
+                 <input type="file" ref="file" onChange={ this.onChangeFile } />
                </div>
-             </div>         
+             </div>
              <span className="upload__hint">
               Select a theme file
              </span>

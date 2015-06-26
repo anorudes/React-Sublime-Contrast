@@ -2,14 +2,14 @@ import { React } from './init';
 import Main from './main';
 
 class App {
-  static config() {    
+  static config() {
     WindowApi.init();
   }
   static render() {
     React.render(
       <Main />,
       document.getElementById('app')
-    );  
+    );
   }
 }
 

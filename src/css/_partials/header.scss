@@ -8,6 +8,18 @@
   z-index: 11;
   .brand-logo {
     padding-left: 20px;
-  }  
+  }
 }
 
+.header-icon-reload {
+  position: absolute;
+  top: 13px;
+  left: 15px;
+  cursor: pointer;
+  opacity: .3;
+  transform: rotate(30deg) scale(.8) scaleX(-1);
+  @include transition-e(.3s);
+  &:hover {
+    opacity: 1;
+  }
+}

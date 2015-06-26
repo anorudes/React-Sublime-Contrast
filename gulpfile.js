@@ -12,10 +12,11 @@ var babel = require("gulp-babel");
 var react = require('gulp-react');
 var notify = require("gulp-notify");
 var browserify = require('browserify');
+var clean = require('gulp-clean');
 var babelify = require('babelify');
 var source = require('vinyl-source-stream');
 var streamify = require('gulp-streamify');
-
+var eslint = require('gulp-eslint');
 
 swallowError = function(error) {
     console.log(error.toString());
@@ -23,24 +24,37 @@ swallowError = function(error) {
     this.emit('end');
 };
 
-gulp.task('react', function() {
+
+gulp.task('lint', function() {
+  return gulp.src(['src/react/**/*.js'])
+    .pipe(eslint())
+    .pipe(eslint.format())
+    .pipe(eslint.failOnError());
+});
+
+gulp.task('build', function() {
     var b = browserify({
         entries: './src/react/index.js',
         extensions: ['.js'],
         debug: false,
         transform: [
                  babelify.configure({
-                   stage: 0,   
+                   stage: 0,
                    plugins: ["jsx-control-statements/babel"]}
                  )
-        ]        
-    })    
+        ]
+    })
     b.bundle().on('error', function(err) {
         notify().write(err.toString());
         this.emit("end");
-    }).pipe(source('bundle.js'))    
+    }).pipe(source('bundle.js'))
     .pipe(gulp.dest('js/'))
     .pipe($.connect.reload());
+});
+
+gulp.task('clean', function() {
+    return gulp.src('js/bundle.js', {read: false})
+        .pipe(clean());
 });
 
 gulp.task('sass', function() {
@@ -63,12 +77,12 @@ gulp.task("connect", function() {
     });
 });
 
-gulp.task('watch', function() {            
-    gulp.watch(['src/css/**/*.*'], ['sass']);        
-    gulp.watch(['src/react/**/*.*'], ['react']);        
+gulp.task('watch', function() {
+    gulp.watch(['src/css/**/*.*'], ['sass']);
+    gulp.watch(['src/react/**/*.*'], ['build']);
 });
 
-gulp.task('default', ['connect', 'react', 'sass', 'watch']);
+gulp.task('default', ['build', 'sass', 'watch']);
 
 
 

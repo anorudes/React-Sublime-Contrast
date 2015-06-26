@@ -8,19 +8,20 @@ import Save from './components/save';
 import themeStore from './stores/theme';
 
 @reactMixin.decorate(Reflux.connect(themeStore))
-export default class Main extends React.Component { 
-  render() {   
-    const {props, state} = this;    
-    return (      
+export default class Main extends React.Component {
+  render() {
+    const {props, state} = this;
+    return (
       <div>
         <nav className="section-header">
            <div className="nav-wrapper">
+             <i className="material-icons header-icon-reload dp48" onClick={ WindowApi.reload.bind(this) }>replay</i>
              <a href="#" className="brand-logo">Lower Contrast</a>
            </div>
-         </nav>             
+         </nav>
 
          <If condition={ !state.showOptions }>
-           <section className="section-upload">         
+           <section className="section-upload">
             <Upload />
           </section>
         </If>
@@ -28,16 +29,16 @@ export default class Main extends React.Component {
          <If condition={ state.showOptions }>
           <section className="section-options">
             <Options />
-          </section>         
+          </section>
         </If>
 
-         <If condition={ state.showOptions }>          
+         <If condition={ state.showOptions }>
             <section className="section-previews">
               <Previews colors={state.colors} />
-            </section>          
+            </section>
         </If>
 
-        <If condition={ state.showOptions }>          
+        <If condition={ state.showOptions }>
           <Save />
         </If>
       </div>

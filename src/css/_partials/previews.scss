@@ -3,20 +3,36 @@
   padding: 0px 20px;
   -webkit-animation: .5s animatePreviews ease-in-out forwards;
   .preview {
+    cursor: pointer;
     width: 20px;
     height: 20px;
     display: inline-block;
     margin: 10px;
-    border: 1px solid #ccc;    
+    border: 1px solid #ccc;
+    position: relative;
+    &--blocked {
+        opacity: 1;
+        &:after {
+          content: "X";
+          position: absolute;
+          color: black;
+          font-weight: 900;
+          left: 0;
+          top: 0;
+          width: 100%;
+          text-align: center;
+          line-height: 20px;
+        }
+    }
   }
 }
 
 
 @-webkit-keyframes animatePreviews {
-  0% {     
+  0% {
     opacity: 0;
   }
-  100% {     
+  100% {
     opacity: 1;
   }
 }

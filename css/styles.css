@@ -5,6 +5,21 @@
   .section-header .brand-logo {
     padding-left: 20px; }
 
+.header-icon-reload {
+  position: absolute;
+  top: 13px;
+  left: 15px;
+  cursor: pointer;
+  opacity: .3;
+  transform: rotate(30deg) scale(.8) scaleX(-1);
+  transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease; }
+  .header-icon-reload:hover {
+    opacity: 1; }
+
 .upload {
   width: 350px;
   height: 230px;
@@ -84,11 +99,25 @@
   padding: 0px 20px;
   -webkit-animation: .5s animatePreviews ease-in-out forwards; }
   .previews .preview {
+    cursor: pointer;
     width: 20px;
     height: 20px;
     display: inline-block;
     margin: 10px;
-    border: 1px solid #ccc; }
+    border: 1px solid #ccc;
+    position: relative; }
+    .previews .preview--blocked {
+      opacity: 1; }
+      .previews .preview--blocked:after {
+        content: "X";
+        position: absolute;
+        color: black;
+        font-weight: 900;
+        left: 0;
+        top: 0;
+        width: 100%;
+        text-align: center;
+        line-height: 20px; }
 
 @-webkit-keyframes animatePreviews {
   0% {
