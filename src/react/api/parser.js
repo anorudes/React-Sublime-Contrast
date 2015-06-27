@@ -13,13 +13,13 @@ export default class ParserApi {
         newColor = (brightness > 50) ? ColorApi.brightness(newColor, (brightness - 50) * 2) : newColor;
         newColor = (brightness < 50) ? ColorApi.darken(newColor, (50 - brightness) * 2) : newColor;
       }
-      let finded = false;
+      let found = false;
       colors.forEach(x => {
         if (x.defaultColor === color) {
-          finded = true;
+          found = true;
         }
       });
-      if (!finded) {
+      if (!found) {
         colors.push({newColor: newColor, defaultColor: color});
         return newColor;
       } else {
