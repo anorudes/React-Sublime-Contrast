@@ -7,10 +7,10 @@ var path = require('path');
 
 class WindowApi {
   static menu() {
-    var windowMenu = new gui.Menu({
+    let windowMenu = new gui.Menu({
       type: 'menubar'
     });
-    var closeMenu = new gui.Menu();
+    let closeMenu = new gui.Menu();
     windowMenu.append(new gui.MenuItem({
         label: 'App',
         submenu: closeMenu

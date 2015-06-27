@@ -1,6 +1,6 @@
 import Reflux from 'reflux';
 
-var themeActions = Reflux.createActions([
+let themeActions = Reflux.createActions([
     'uploadTheme',
     'saveTheme',
     'setRange',

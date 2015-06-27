@@ -2,7 +2,7 @@ import Reflux from 'reflux';
 import themeActions from '../actions/theme';
 import Parser from '../api/parser';
 
-var themeStore = Reflux.createStore({
+let themeStore = Reflux.createStore({
     listenables: [themeActions],
     data: {
       filePath: null,
@@ -31,7 +31,7 @@ var themeStore = Reflux.createStore({
     onBlockColor(color) {
       let blockedColors = this.data.blockedColors;
       if (blockedColors.indexOf(color) === -1) {
-        blockedColors.push(color);
+        blockedColors.push(color.toLowerCase());
       }
       this.data.blockedColors = blockedColors;
       this.updateTheme();
