@@ -1,5 +1,6 @@
 import {React, Reflux, reactMixin} from '../init';
 import themeActions from '../actions/theme';
+import Tooltip from './tooltip';
 
 class Preview extends React.Component {
     constructor(props) {
@@ -24,7 +25,9 @@ class Preview extends React.Component {
       };
       let classNames = cx({ 'preview--blocked': state.blocked, 'preview': true});
       return (
-        <div className={classNames} style={style} onClick={this.toggleBlock}></div>
+        <div className={classNames} style={style} onClick={this.toggleBlock}>
+          <Tooltip color={props.defaultColor} />
+        </div>
       );
     }
 }

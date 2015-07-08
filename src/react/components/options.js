@@ -20,11 +20,11 @@ export default class Upload extends React.Component {
     return (
       <div className="options">
            <p className="range-field">
-             <label class="active">Saturate:</label>
+             <label>Saturate:</label>
              <input type="range" ref="saturate" min="0" max="100" onChange={  this.onChange } />
            </p>
            <p className="range-field">
-             <label class="active">Brightness:</label>
+             <label>Brightness:</label>
              <input type="range" ref="brightness" min="0" max="100" onChange={  this.onChange } />
            </p>
       </div>

@@ -40,6 +40,7 @@
     "react": "^0.13.3",
     "react-hot-loader": "^1.2.7",
     "react-mixin": "^1.2.3",
+    "react-router": "^0.13.3",
     "reflux": "^0.2.7",
     "tinycolor2": "git://github.com/bgrins/TinyColor.git",
     "vinyl-source-stream": "^1.1.0",

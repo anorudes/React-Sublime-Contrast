@@ -118,6 +118,15 @@
         width: 100%;
         text-align: center;
         line-height: 20px; }
+    .previews .preview:hover .preview__default-color {
+      display: block; }
+    .previews .preview__default-color {
+      width: 18px;
+      height: 3px;
+      position: absolute;
+      top: -8px;
+      left: 0px;
+      display: none; }
 
 @-webkit-keyframes animatePreviews {
   0% {

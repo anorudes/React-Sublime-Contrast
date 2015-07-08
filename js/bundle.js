@@ -36,7 +36,7 @@ var App = (function () {
 App.config();
 App.render();
 
-},{"./init":207,"./main":208}],2:[function(require,module,exports){
+},{"./init":208,"./main":209}],2:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -23536,15 +23536,15 @@ exports.throwIf = function(val,msg){
 };
 
 },{"eventemitter3":179,"native-promise-only":180}],198:[function(require,module,exports){
-"use strict";
+'use strict';
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-var _reflux = require("reflux");
+var _reflux = require('reflux');
 
 var _reflux2 = _interopRequireDefault(_reflux);
 
-var themeActions = _reflux2["default"].createActions(["uploadTheme", "saveTheme", "setRange"]);
+var themeActions = _reflux2['default'].createActions(['uploadTheme', 'saveTheme', 'setRange', 'blockColor', 'removeBlockColor']);
 
 module.exports = themeActions;
 
@@ -23573,12 +23573,23 @@ var ColorApi = (function () {
   _createClass(ColorApi, null, [{
     key: 'saturate',
     value: function saturate(color, percent) {
-      return (0, _tinycolor2['default'])(color).desaturate(100 - percent).toString();
+      return (0, _tinycolor2['default'])(color).saturate(percent).toString();
     }
   }, {
     key: 'brightness',
     value: function brightness(color, percent) {
-      return (0, _tinycolor2['default'])(color).darken(100 - percent).toString();
+      console.log('12356789123');
+      return (0, _tinycolor2['default'])(color).brighten(percent).toString();
+    }
+  }, {
+    key: 'desaturate',
+    value: function desaturate(color, percent) {
+      return (0, _tinycolor2['default'])(color).desaturate(percent).toString();
+    }
+  }, {
+    key: 'darken',
+    value: function darken(color, percent) {
+      return (0, _tinycolor2['default'])(color).darken(percent).toString();
     }
   }]);
 
@@ -23612,16 +23623,39 @@ var ParserApi = (function () {
 
   _createClass(ParserApi, null, [{
     key: 'generate',
-    value: function generate(themeContent, saturate, brightness) {
+    value: function generate(themeContent, saturate, brightness, blockedColors) {
       var regex = /(#[0-9a-fA-F]{3,6})\</gi;
       var colors = [];
-      return { newThemeContent: themeContent.replace(regex, function (match, color) {
+      return {
+        newThemeContent: themeContent.replace(regex, function (match, color) {
+          color = color.toLowerCase();
           var newColor = color;
-          newColor = _color2['default'].saturate(newColor, saturate);
-          newColor = _color2['default'].brightness(newColor, brightness);
-          colors.push(newColor);
-          return newColor;
-        }), colors: colors };
+          if (blockedColors.indexOf(color) === -1) {
+            newColor = saturate > 50 ? _color2['default'].saturate(newColor, (saturate - 50) * 2) : newColor;
+            newColor = saturate < 50 ? _color2['default'].desaturate(newColor, (50 - saturate) * 2) : newColor;
+            newColor = brightness > 50 ? _color2['default'].brightness(newColor, (brightness - 50) * 2) : newColor;
+            newColor = brightness < 50 ? _color2['default'].darken(newColor, (50 - brightness) * 2) : newColor;
+          }
+          var found = false;
+          var foundNewColor = undefined;
+          colors.forEach(function (x) {
+            if (x.defaultColor === color) {
+              found = true;
+              foundNewColor = x.newColor;
+            }
+          });
+          if (!found) {
+            colors.push({
+              newColor: newColor,
+              defaultColor: color
+            });
+            return newColor;
+          } else {
+            return foundNewColor;
+          }
+        }),
+        colors: colors
+      };
     }
   }]);
 
@@ -24817,7 +24851,7 @@ var Upload = (function (_React$Component) {
     _classCallCheck(this, Upload);
 
     _get(Object.getPrototypeOf(Upload.prototype), 'constructor', this).call(this, props);
-    this._onChange = this._onChange.bind(this);
+    this.onChange = this.onChange.bind(this);
   }
 
   _inherits(Upload, _React$Component);
@@ -24825,12 +24859,12 @@ var Upload = (function (_React$Component) {
   _createClass(Upload, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
-      _init.React.findDOMNode(this.refs.saturate).defaultValue = '100';
-      _init.React.findDOMNode(this.refs.brightness).defaultValue = '100';
+      _init.React.findDOMNode(this.refs.saturate).defaultValue = '50';
+      _init.React.findDOMNode(this.refs.brightness).defaultValue = '50';
     }
   }, {
-    key: '_onChange',
-    value: function _onChange() {
+    key: 'onChange',
+    value: function onChange() {
       var saturate = _init.React.findDOMNode(this.refs.saturate).value;
       var brightness = _init.React.findDOMNode(this.refs.brightness).value;
       _actionsTheme2['default'].setRange(saturate, brightness);
@@ -24849,20 +24883,20 @@ var Upload = (function (_React$Component) {
           { className: 'range-field' },
           _init.React.createElement(
             'label',
-            { 'class': 'active' },
+            null,
             'Saturate:'
           ),
-          _init.React.createElement('input', { type: 'range', ref: 'saturate', min: '0', max: '100', onChange: this._onChange })
+          _init.React.createElement('input', { type: 'range', ref: 'saturate', min: '0', max: '100', onChange: this.onChange })
         ),
         _init.React.createElement(
           'p',
           { className: 'range-field' },
           _init.React.createElement(
             'label',
-            { 'class': 'active' },
+            null,
             'Brightness:'
           ),
-          _init.React.createElement('input', { type: 'range', ref: 'brightness', min: '0', max: '100', onChange: this._onChange })
+          _init.React.createElement('input', { type: 'range', ref: 'brightness', min: '0', max: '100', onChange: this.onChange })
         )
       );
     }
@@ -24874,42 +24908,71 @@ var Upload = (function (_React$Component) {
 exports['default'] = Upload;
 module.exports = exports['default'];
 
-},{"../actions/theme":198,"../init":207}],203:[function(require,module,exports){
-"use strict";
+},{"../actions/theme":198,"../init":208}],203:[function(require,module,exports){
+'use strict';
 
-Object.defineProperty(exports, "__esModule", {
+Object.defineProperty(exports, '__esModule', {
   value: true
 });
 
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-var _init = require("../init");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
+
+var _init = require('../init');
+
+var _actionsTheme = require('../actions/theme');
+
+var _actionsTheme2 = _interopRequireDefault(_actionsTheme);
+
+var _tooltip = require('./tooltip');
+
+var _tooltip2 = _interopRequireDefault(_tooltip);
 
 var Preview = (function (_React$Component) {
-  function Preview() {
+  function Preview(props) {
     _classCallCheck(this, Preview);
 
-    if (_React$Component != null) {
-      _React$Component.apply(this, arguments);
-    }
+    _get(Object.getPrototypeOf(Preview.prototype), 'constructor', this).call(this, props);
+    this.toggleBlock = this.toggleBlock.bind(this);
+    this.state = { blocked: false };
   }
 
   _inherits(Preview, _React$Component);
 
   _createClass(Preview, [{
-    key: "render",
+    key: 'toggleBlock',
+    value: function toggleBlock() {
+      var blocked = !this.state.blocked;
+      this.setState({ blocked: blocked });
+      if (blocked) {
+        _actionsTheme2['default'].blockColor(this.props.defaultColor);
+      } else {
+        _actionsTheme2['default'].removeBlockColor(this.props.defaultColor);
+      }
+    }
+  }, {
+    key: 'render',
     value: function render() {
       var props = this.props;
       var state = this.state;
 
+      var cx = _init.React.addons.classSet;
       var style = {
         backgroundColor: props.color
       };
-      return _init.React.createElement("div", { className: "preview", style: style });
+      var classNames = cx({ 'preview--blocked': state.blocked, 'preview': true });
+      return _init.React.createElement(
+        'div',
+        { className: classNames, style: style, onClick: this.toggleBlock },
+        _init.React.createElement(_tooltip2['default'], { color: props.defaultColor })
+      );
     }
   }]);
 
@@ -24928,31 +24991,31 @@ var Previews = (function (_React$Component2) {
   _inherits(Previews, _React$Component2);
 
   _createClass(Previews, [{
-    key: "componentWillUpdate",
+    key: 'componentWillUpdate',
     value: function componentWillUpdate() {
-      this._resize();
+      this.resize();
     }
   }, {
-    key: "componentDidMount",
+    key: 'componentDidMount',
     value: function componentDidMount() {
-      this._resize();
+      this.resize();
     }
   }, {
-    key: "_resize",
-    value: function _resize() {
-      WindowApi.setHeight(Math.ceil(this.props.colors.length / 13) * 100 + 130);
+    key: 'resize',
+    value: function resize() {
+      WindowApi.setHeight(Math.ceil(this.props.colors.length / 13) * 50 + 400);
     }
   }, {
-    key: "render",
+    key: 'render',
     value: function render() {
       var props = this.props;
       var state = this.state;
 
       return _init.React.createElement(
-        "section",
-        { className: "previews" },
+        'section',
+        { className: 'previews' },
         props.colors.map(function (color) {
-          return _init.React.createElement(Preview, { color: color });
+          return _init.React.createElement(Preview, { color: color.newColor, defaultColor: color.defaultColor });
         }, this)
       );
     }
@@ -24961,10 +25024,10 @@ var Previews = (function (_React$Component2) {
   return Previews;
 })(_init.React.Component);
 
-exports["default"] = Previews;
-module.exports = exports["default"];
+exports['default'] = Previews;
+module.exports = exports['default'];
 
-},{"../init":207}],204:[function(require,module,exports){
+},{"../actions/theme":198,"../init":208,"./tooltip":206}],204:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -25029,7 +25092,7 @@ var Result = (function (_React$Component) {
 exports['default'] = Result;
 module.exports = exports['default'];
 
-},{"../actions/theme":198,"../api/parser":200,"../init":207}],205:[function(require,module,exports){
+},{"../actions/theme":198,"../api/parser":200,"../init":208}],205:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -25058,14 +25121,14 @@ var Save = (function (_React$Component) {
 
     _get(Object.getPrototypeOf(Save.prototype), 'constructor', this).call(this, props);
     this.state = { saved: false };
-    this._onClick = this._onClick.bind(this);
+    this.onClick = this.onClick.bind(this);
   }
 
   _inherits(Save, _React$Component);
 
   _createClass(Save, [{
-    key: '_onClick',
-    value: function _onClick() {
+    key: 'onClick',
+    value: function onClick() {
       var _this = this;
 
       this.setState({ saved: true });
@@ -25085,7 +25148,7 @@ var Save = (function (_React$Component) {
         { className: 'save-button' },
         _init.React.createElement(
           'a',
-          { className: 'waves-effect waves-light btn', onClick: this._onClick },
+          { className: 'waves-effect waves-light btn', onClick: this.onClick },
           _init.React.createElement('i', { className: 'material-icons left' }),
           'Save'
         ),
@@ -25104,7 +25167,54 @@ var Save = (function (_React$Component) {
 exports['default'] = Save;
 module.exports = exports['default'];
 
-},{"../actions/theme":198,"../init":207}],206:[function(require,module,exports){
+},{"../actions/theme":198,"../init":208}],206:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
+
+var _init = require('../init');
+
+var TooltipColor = (function (_React$Component) {
+  function TooltipColor() {
+    _classCallCheck(this, TooltipColor);
+
+    if (_React$Component != null) {
+      _React$Component.apply(this, arguments);
+    }
+  }
+
+  _inherits(TooltipColor, _React$Component);
+
+  _createClass(TooltipColor, [{
+    key: 'render',
+    value: function render() {
+      var props = this.props;
+      var state = this.state;
+
+      console.log(props.color + '1123');
+      var cx = _init.React.addons.classSet;
+      var style = {
+        backgroundColor: props.color
+      };
+      return _init.React.createElement('div', { className: 'preview__default-color', style: style });
+    }
+  }]);
+
+  return TooltipColor;
+})(_init.React.Component);
+
+exports['default'] = TooltipColor;
+module.exports = exports['default'];
+
+},{"../init":208}],207:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -25136,14 +25246,14 @@ var Upload = (function (_React$Component) {
     _classCallCheck(this, Upload);
 
     _get(Object.getPrototypeOf(Upload.prototype), 'constructor', this).call(this, props);
-    this._onChangeFile = this._onChangeFile.bind(this);
+    this.onChangeFile = this.onChangeFile.bind(this);
   }
 
   _inherits(Upload, _React$Component);
 
   _createClass(Upload, [{
-    key: '_onChangeFile',
-    value: function _onChangeFile() {
+    key: 'onChangeFile',
+    value: function onChangeFile() {
       var filePath = _init.React.findDOMNode(this.refs.file).value;
       _actionsTheme2['default'].uploadTheme(filePath);
     }
@@ -25179,7 +25289,7 @@ var Upload = (function (_React$Component) {
                   null,
                   'Upload'
                 ),
-                _init.React.createElement('input', { type: 'file', ref: 'file', onChange: this._onChangeFile })
+                _init.React.createElement('input', { type: 'file', ref: 'file', onChange: this.onChangeFile })
               )
             ),
             _init.React.createElement(
@@ -25199,7 +25309,7 @@ var Upload = (function (_React$Component) {
 exports['default'] = Upload;
 module.exports = exports['default'];
 
-},{"../actions/theme":198,"../api/parser":200,"../init":207}],207:[function(require,module,exports){
+},{"../actions/theme":198,"../api/parser":200,"../init":208}],208:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -25224,7 +25334,7 @@ exports.React = _reactAddons2['default'];
 exports.Reflux = _reflux2['default'];
 exports.reactMixin = _reactMixin2['default'];
 
-},{"react-mixin":3,"react/addons":6,"reflux":178}],208:[function(require,module,exports){
+},{"react-mixin":3,"react/addons":6,"reflux":178}],209:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -25294,6 +25404,11 @@ var Main = (function (_React$Component) {
             'div',
             { className: 'nav-wrapper' },
             _init.React.createElement(
+              'i',
+              { className: 'material-icons header-icon-reload dp48', onClick: WindowApi.reload.bind(this) },
+              'replay'
+            ),
+            _init.React.createElement(
               'a',
               { href: '#', className: 'brand-logo' },
               'Lower Contrast'
@@ -25327,7 +25442,7 @@ var Main = (function (_React$Component) {
 exports['default'] = Main;
 module.exports = exports['default'];
 
-},{"./components/options":202,"./components/previews":203,"./components/result":204,"./components/save":205,"./components/upload":206,"./init":207,"./stores/theme":209}],209:[function(require,module,exports){
+},{"./components/options":202,"./components/previews":203,"./components/result":204,"./components/save":205,"./components/upload":207,"./init":208,"./stores/theme":210}],210:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -25353,26 +25468,42 @@ var themeStore = _reflux2['default'].createStore({
   listenables: [_actionsTheme2['default']],
   data: {
     filePath: null,
-    saturatePercentage: 100,
-    brightnessPercentage: 100,
+    saturatePercentage: 50,
+    brightnessPercentage: 50,
     showOptions: false,
     themeContentDefault: null, /* default theme content */
     themeContentNew: null, /* new generated theme content */
-    colors: [] /* array of colors */
+    colors: [], /* array of colors */
+    blockedColors: []
   },
   onUploadTheme: function onUploadTheme(filePath) {
     this.data.showOptions = true;
     var themeContent = fs.readFileSync(filePath, 'utf8');
     this.data.filePath = filePath;
     this.data.themeContent = themeContent;
-    this._updateTheme();
+    this.updateTheme();
+  },
+  onRemoveBlockColor: function onRemoveBlockColor(color) {
+    var blockedColors = this.data.blockedColors;
+    var index = blockedColors.indexOf(color);
+    blockedColors.splice(index, 1);
+    this.data.blockedColors = blockedColors;
+    this.updateTheme();
+  },
+  onBlockColor: function onBlockColor(color) {
+    var blockedColors = this.data.blockedColors;
+    if (blockedColors.indexOf(color) === -1) {
+      blockedColors.push(color.toLowerCase());
+    }
+    this.data.blockedColors = blockedColors;
+    this.updateTheme();
   },
   onSaveTheme: function onSaveTheme(filePath) {
     var newFilePath = path.dirname(process.execPath) + '/out/' + this.data.filePath.replace(/^.*[\\\/]/, '');
     fs.writeFile(newFilePath, this.data.themeContentNew);
   },
-  _updateTheme: function _updateTheme() {
-    var generate = _apiParser2['default'].generate(this.data.themeContent, this.data.saturatePercentage, this.data.brightnessPercentage);
+  updateTheme: function updateTheme() {
+    var generate = _apiParser2['default'].generate(this.data.themeContent, this.data.saturatePercentage, this.data.brightnessPercentage, this.data.blockedColors);
     this.data.themeContentNew = generate.newThemeContent;
     this.data.colors = generate.colors;
     this.trigger(this.data);
@@ -25381,7 +25512,7 @@ var themeStore = _reflux2['default'].createStore({
     this.data.saturatePercentage = saturate;
     this.data.brightnessPercentage = brightness;
     this.trigger(this.data);
-    this._updateTheme();
+    this.updateTheme();
   },
   getInitialState: function getInitialState() {
     return this.data;
