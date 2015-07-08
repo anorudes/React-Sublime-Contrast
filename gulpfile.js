@@ -17,6 +17,7 @@ var babelify = require('babelify');
 var source = require('vinyl-source-stream');
 var streamify = require('gulp-streamify');
 var eslint = require('gulp-eslint');
+var livereload = require('gulp-livereload');
 
 swallowError = function(error) {
     console.log(error.toString());
@@ -66,7 +67,13 @@ gulp.task('sass', function() {
         }
     }))
     .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest('css'));
+    .pipe(gulp.dest('css'))
+    .pipe(livereload());
+});
+
+gulp.task('reload', function() {
+    return gulp.src(['*.html', 'js/*.js', 'css/*.css'])
+    .pipe(livereload());
 });
 
 gulp.task("connect", function() {
@@ -82,7 +89,12 @@ gulp.task('watch', function() {
     gulp.watch(['src/react/**/*.*'], ['build']);
 });
 
-gulp.task('default', ['build', 'sass', 'watch']);
+gulp.task('watch-reload', function() {
+    livereload.listen();
+    gulp.watch(['*.html', 'js/*.js', 'css/*.css'], ['reload']);
+});
+
+gulp.task('default', ['build', 'sass', 'watch', 'watch-reload']);
 
 
 
