@@ -13,7 +13,7 @@ gulp, react es6, babel es7 annotations, reflux, node-webkit
 
 ## Demo
 ```
-https://monosnap.com/file/34chv5AJbnDYaTRP6q40hswhyWHvQy
+https://monosnap.com/file/bQolmTVxz4P9QVWonyHwNX8VBPFNbt
 ```
 
 
