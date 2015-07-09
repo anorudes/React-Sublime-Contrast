@@ -23623,7 +23623,7 @@ var ParserApi = (function () {
   _createClass(ParserApi, null, [{
     key: 'generate',
     value: function generate(themeContent, saturate, brightness, blockedColors) {
-      var regex = /(#[0-9a-fA-F]{3,6})\</gi;
+      var regex = /(#[0-9a-fA-F]{3,6})/gi;
       var colors = [];
       return {
         newThemeContent: themeContent.replace(regex, function (match, color) {
@@ -25411,7 +25411,7 @@ var Main = (function (_React$Component) {
             _init.React.createElement(
               'a',
               { href: '#', className: 'brand-logo' },
-              'Lower Contrast'
+              'Sublime Contrast'
             )
           )
         ),

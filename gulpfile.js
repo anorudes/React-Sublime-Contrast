@@ -89,7 +89,7 @@ gulp.task('watch', function() {
     gulp.watch(['src/react/**/*.*'], ['build']);
 });
 
-gulp.task('build', function () {
+gulp.task('build-app', function () {
     var nw = new NwBuilder({
         version: '0.11.0',
         files: './**',

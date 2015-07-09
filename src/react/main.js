@@ -16,7 +16,7 @@ export default class Main extends React.Component {
         <nav className="section-header">
            <div className="nav-wrapper">
              <i className="material-icons header-icon-reload dp48" onClick={ WindowApi.reload.bind(this) }>replay</i>
-             <a href="#" className="brand-logo">Lower Contrast</a>
+             <a href="#" className="brand-logo">Sublime Contrast</a>
            </div>
          </nav>
 

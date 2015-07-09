@@ -3,7 +3,10 @@
   position: relative;
   z-index: 11; }
   .section-header .brand-logo {
-    padding-left: 20px; }
+    padding-left: 50px;
+    font-size: 20px;
+    text-align: left;
+    width: 100%; }
 
 .header-icon-reload {
   position: absolute;
