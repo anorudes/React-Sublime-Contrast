@@ -1,5 +1,5 @@
 {
-  "name": "",
+  "name": "lContrast",
   "version": "0.0.1",
   "description": "",
   "main": "index.html",
@@ -53,7 +53,7 @@
     "java": false
   },
   "window": {
-    "toolbar": false,
+    "toolbar": true,
     "show": true,
     "width": 600,
     "height": 500,
@@ -67,6 +67,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "gulp-livereload": "^3.8.0"
+    "gulp-livereload": "^3.8.0",
+    "node-webkit-builder": "^1.0.12"
   }
 }

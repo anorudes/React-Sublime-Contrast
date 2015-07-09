@@ -18,6 +18,8 @@ var source = require('vinyl-source-stream');
 var streamify = require('gulp-streamify');
 var eslint = require('gulp-eslint');
 var livereload = require('gulp-livereload');
+var NwBuilder = require('node-webkit-builder');
+var gutil = require('gulp-util');
 
 swallowError = function(error) {
     console.log(error.toString());
@@ -85,6 +87,22 @@ gulp.task("connect", function() {
 gulp.task('watch', function() {
     gulp.watch(['src/css/**/*.*'], ['sass']);
     gulp.watch(['src/react/**/*.*'], ['build']);
+});
+
+gulp.task('build', function () {
+    var nw = new NwBuilder({
+        version: '0.11.0',
+        files: './**',
+        platforms: ['win32', 'win64', 'osx32', 'osx64']
+    });
+    
+    nw.on('log', function (msg) {
+        gutil.log('node-webkit-builder', msg);
+    });
+    
+    return nw.build().catch(function (err) {
+        gutil.log('node-webkit-builder', err);
+    });
 });
 
 gulp.task('watch-reload', function() {

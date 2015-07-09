@@ -23,7 +23,7 @@ $ npm install nw -g
 $ npm install
 ```
 
-# Build and watch
+# Build js and css
 ```
 $ gulp
 ```
@@ -31,6 +31,11 @@ $ gulp
 # Start app
 ```
 $ nw .
+```
+
+# Build app for win, mac, linux
+```
+$ gulp build
 ```
 
 
