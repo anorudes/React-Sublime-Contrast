@@ -4,7 +4,7 @@
 The app that changes saturate and brightness Sublime Text theme.<br />
 <br />
 **3 steps: <br />**
-1) Choose the file<br />
+1) Choose the Sublime Text theme file (have example in "example" folder)<br />
 2) Change the value of brightness and contrast<br />
 3) Save the result<br />
 <br />
