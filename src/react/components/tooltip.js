@@ -3,7 +3,6 @@ import {React, Reflux, reactMixin} from '../init';
 export default class TooltipColor extends React.Component {
   render() {
     const {props, state} = this;
-    console.log(props.color+'1123');
     let cx = React.addons.classSet;
     let style = {
       backgroundColor: props.color

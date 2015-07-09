@@ -3,11 +3,10 @@
 }
 
 .save-button, .open-button {
-  text-align: center;
-  margin-top: 10px;
-  -webkit-animation: .5s animateSaveButton ease-in-out forwards;
   display: inline-block;
-  margin: 0 6px;
+  margin: 10px 6px;
+  text-align: center;
+  -webkit-animation: .5s animateSaveButton ease-in-out forwards;
 }
 
 .file-path {
@@ -45,4 +44,3 @@
     opacity: 1;
   }
 }
-

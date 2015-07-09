@@ -23578,7 +23578,6 @@ var ColorApi = (function () {
   }, {
     key: 'brightness',
     value: function brightness(color, percent) {
-      console.log('12356789123');
       return (0, _tinycolor2['default'])(color).brighten(percent).toString();
     }
   }, {
@@ -25120,21 +25119,19 @@ var Save = (function (_React$Component) {
     _classCallCheck(this, Save);
 
     _get(Object.getPrototypeOf(Save.prototype), 'constructor', this).call(this, props);
-    this.state = { saved: false };
-    this.onClick = this.onClick.bind(this);
+    this.onSave = this.onSave.bind(this);
   }
 
   _inherits(Save, _React$Component);
 
   _createClass(Save, [{
-    key: 'onClick',
-    value: function onClick() {
-      var _this = this;
-
-      this.setState({ saved: true });
-      setTimeout(function () {
-        _this.setState({ saved: false });
-      }, 1500);
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      $(_init.React.findDOMNode(this.refs.saveDialog)).attr('nwsaveas', this.props.fileName);
+    }
+  }, {
+    key: 'onSave',
+    value: function onSave() {
       _actionsTheme2['default'].saveTheme();
     }
   }, {
@@ -25145,17 +25142,21 @@ var Save = (function (_React$Component) {
 
       return _init.React.createElement(
         'div',
-        { className: 'save-button' },
+        null,
+        _init.React.createElement('input', { type: 'file', ref: 'saveDialog', id: 'saveDialog', hidden: true }),
         _init.React.createElement(
-          'a',
-          { className: 'waves-effect waves-light btn', onClick: this.onClick },
-          _init.React.createElement('i', { className: 'material-icons left' }),
-          'Save'
-        ),
-        state.saved && _init.React.createElement(
-          'span',
-          { className: 'file-path' },
-          'saved'
+          'div',
+          { className: 'buttons' },
+          _init.React.createElement(
+            'div',
+            { className: 'save-button' },
+            _init.React.createElement(
+              'a',
+              { className: 'waves-effect waves-light btn', onClick: this.onSave },
+              _init.React.createElement('i', { className: 'material-icons left' }),
+              'Save'
+            )
+          )
         )
       );
     }
@@ -25168,19 +25169,19 @@ exports['default'] = Save;
 module.exports = exports['default'];
 
 },{"../actions/theme":198,"../init":208}],206:[function(require,module,exports){
-'use strict';
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
 
-var _init = require('../init');
+var _init = require("../init");
 
 var TooltipColor = (function (_React$Component) {
   function TooltipColor() {
@@ -25194,25 +25195,24 @@ var TooltipColor = (function (_React$Component) {
   _inherits(TooltipColor, _React$Component);
 
   _createClass(TooltipColor, [{
-    key: 'render',
+    key: "render",
     value: function render() {
       var props = this.props;
       var state = this.state;
 
-      console.log(props.color + '1123');
       var cx = _init.React.addons.classSet;
       var style = {
         backgroundColor: props.color
       };
-      return _init.React.createElement('div', { className: 'preview__default-color', style: style });
+      return _init.React.createElement("div", { className: "preview__default-color", style: style });
     }
   }]);
 
   return TooltipColor;
 })(_init.React.Component);
 
-exports['default'] = TooltipColor;
-module.exports = exports['default'];
+exports["default"] = TooltipColor;
+module.exports = exports["default"];
 
 },{"../init":208}],207:[function(require,module,exports){
 'use strict';
@@ -25430,7 +25430,7 @@ var Main = (function (_React$Component) {
           { className: 'section-previews' },
           _init.React.createElement(_componentsPreviews2['default'], { colors: state.colors })
         ) : '',
-        state.showOptions ? _init.React.createElement(_componentsSave2['default'], null) : ''
+        state.showOptions ? _init.React.createElement(_componentsSave2['default'], { fileName: state.fileName }) : ''
       );
     }
   }]);
@@ -25443,7 +25443,6 @@ exports['default'] = Main;
 module.exports = exports['default'];
 
 },{"./components/options":202,"./components/previews":203,"./components/result":204,"./components/save":205,"./components/upload":207,"./init":208,"./stores/theme":210}],210:[function(require,module,exports){
-(function (process){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -25468,6 +25467,7 @@ var themeStore = _reflux2['default'].createStore({
   listenables: [_actionsTheme2['default']],
   data: {
     filePath: null,
+    fileName: null,
     saturatePercentage: 50,
     brightnessPercentage: 50,
     showOptions: false,
@@ -25480,6 +25480,7 @@ var themeStore = _reflux2['default'].createStore({
     this.data.showOptions = true;
     var themeContent = fs.readFileSync(filePath, 'utf8');
     this.data.filePath = filePath;
+    this.data.fileName = this.data.filePath.replace(/^.*[\\\/]/, '');
     this.data.themeContent = themeContent;
     this.updateTheme();
   },
@@ -25499,8 +25500,17 @@ var themeStore = _reflux2['default'].createStore({
     this.updateTheme();
   },
   onSaveTheme: function onSaveTheme(filePath) {
-    var newFilePath = path.dirname(process.execPath) + '/out/' + this.data.filePath.replace(/^.*[\\\/]/, '');
-    fs.writeFile(newFilePath, this.data.themeContentNew);
+    var chooser = $('#saveDialog');
+    var fileName = this.data.fileName;
+    var themeContentNew = this.data.themeContentNew;
+    chooser.change(function (e) {
+      var newFilePath = $(this).val();
+      newFilePath += newFilePath.indexOf('.tmTheme') > 0 ? '' : '.tmTheme';
+      console.log(newFilePath);
+      fs.writeFile(newFilePath, themeContentNew);
+    });
+    chooser.trigger('click');
+    this.trigger(this.data);
   },
   updateTheme: function updateTheme() {
     var generate = _apiParser2['default'].generate(this.data.themeContent, this.data.saturatePercentage, this.data.brightnessPercentage, this.data.blockedColors);
@@ -25522,5 +25532,4 @@ var themeStore = _reflux2['default'].createStore({
 exports['default'] = themeStore;
 module.exports = exports['default'];
 
-}).call(this,require('_process'))
-},{"../actions/theme":198,"../api/parser":200,"_process":2,"reflux":178}]},{},[1]);
+},{"../actions/theme":198,"../api/parser":200,"reflux":178}]},{},[1]);

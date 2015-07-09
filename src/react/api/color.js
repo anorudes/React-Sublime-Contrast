@@ -6,7 +6,6 @@ export default class ColorApi {
   }
 
   static brightness(color, percent) {
-    console.log('12356789123');
     return tinycolor(color).brighten(percent).toString();
   }
 

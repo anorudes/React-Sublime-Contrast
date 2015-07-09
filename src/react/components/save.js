@@ -4,23 +4,25 @@ import themeActions from '../actions/theme';
 export default class Save extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {saved: false};
-    this.onClick = this.onClick.bind(this);
+    this.onSave = this.onSave.bind(this);
   }
-  onClick() {
-    this.setState({ saved: true });
-    setTimeout(() => {
-      this.setState({ saved: false });
-    }, 1500);
+  componentDidMount() {
+      $(React.findDOMNode(this.refs.saveDialog)).attr('nwsaveas', this.props.fileName);
+  }
+  onSave() {
     themeActions.saveTheme();
   }
     render() {
       const {props, state} = this;
       return (
-          <div className="save-button">
-            <a className="waves-effect waves-light btn" onClick={ this.onClick }><i className="material-icons left"></i>Save</a>
-            { (state.saved) && <span className="file-path">saved</span> }
+        <div>
+          <input type="file" ref="saveDialog" id="saveDialog" hidden />
+          <div className="buttons">
+            <div className="save-button">
+              <a className="waves-effect waves-light btn" onClick={ this.onSave }><i className="material-icons left"></i>Save</a>
+            </div>
           </div>
+        </div>
       );
     }
 }

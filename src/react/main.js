@@ -39,7 +39,7 @@ export default class Main extends React.Component {
         </If>
 
         <If condition={ state.showOptions }>
-          <Save />
+          <Save fileName={state.fileName} />
         </If>
       </div>
     );

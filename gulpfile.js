@@ -49,8 +49,7 @@ gulp.task('build', function() {
         notify().write(err.toString());
         this.emit("end");
     }).pipe(source('bundle.js'))
-    .pipe(gulp.dest('js/'))
-    .pipe($.connect.reload());
+    .pipe(gulp.dest('js/'));
 });
 
 gulp.task('clean', function() {
@@ -68,7 +67,6 @@ gulp.task('sass', function() {
     }))
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('css'))
-    .pipe(livereload());
 });
 
 gulp.task('reload', function() {

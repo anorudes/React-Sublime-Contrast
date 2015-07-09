@@ -6,6 +6,7 @@ let themeStore = Reflux.createStore({
     listenables: [themeActions],
     data: {
       filePath: null,
+      fileName: null,
       saturatePercentage: 50,
       brightnessPercentage: 50,
       showOptions: false,
@@ -18,6 +19,7 @@ let themeStore = Reflux.createStore({
       this.data.showOptions = true;
       let themeContent = fs.readFileSync(filePath, 'utf8');
       this.data.filePath = filePath;
+      this.data.fileName = this.data.filePath.replace(/^.*[\\\/]/, '');
       this.data.themeContent = themeContent;
       this.updateTheme();
     },
@@ -37,8 +39,17 @@ let themeStore = Reflux.createStore({
       this.updateTheme();
     },
     onSaveTheme(filePath) {
-      let newFilePath = path.dirname(process.execPath) + '/out/' + this.data.filePath.replace(/^.*[\\\/]/, '');
-      fs.writeFile(newFilePath, this.data.themeContentNew);
+      let chooser = $('#saveDialog');
+      let fileName = this.data.fileName;
+      let themeContentNew = this.data.themeContentNew;
+      chooser.change(function(e) {
+        let newFilePath = $(this).val();
+        newFilePath += newFilePath.indexOf('.tmTheme') > 0 ? "" : ".tmTheme";        
+        console.log(newFilePath);
+        fs.writeFile(newFilePath, themeContentNew);
+      });
+      chooser.trigger('click');
+      this.trigger(this.data);
     },
     updateTheme() {
       let generate = Parser.generate(this.data.themeContent, this.data.saturatePercentage, this.data.brightnessPercentage, this.data.blockedColors);

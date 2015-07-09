@@ -135,9 +135,13 @@
   100% {
     opacity: 1; } }
 
-.save-button {
+.buttons {
+  text-align: center; }
+
+.save-button, .open-button {
+  display: inline-block;
+  margin: 10px 6px;
   text-align: center;
-  margin-top: 10px;
   -webkit-animation: .5s animateSaveButton ease-in-out forwards; }
 
 .file-path {
