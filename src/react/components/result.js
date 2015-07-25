@@ -3,14 +3,13 @@ import ParserApi from '../api/parser';
 
 export default class Result extends React.Component {
   render() {
-    const {props, state} = this;
     return (
       <section className="result" >
         <div className="result__title">
           Generated theme:
         </div>
         <div className="result__code">
-        { props.themeContent }
+        { this.props.store.themeContent }
         </div>
       </section>
     );

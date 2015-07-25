@@ -8,10 +8,9 @@ export default class Upload extends React.Component {
   }
   onChangeFile() {
     let filePath = React.findDOMNode(this.refs.file).value;
-    themeActions.uploadTheme(filePath);
+    this.props.actions.upload(filePath);
   }
   render() {
-    const {props, state} = this;
     return (
       <div className="upload">
         <div className="upload__container">

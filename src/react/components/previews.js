@@ -11,21 +11,20 @@ class Preview extends React.Component {
       let blocked = !this.state.blocked;
       this.setState({ blocked: blocked });
       if (blocked) {
-        themeActions.blockColor(this.props.defaultColor);
+        this.props.actions.blockColor(this.props.defaultColor);
       } else {
-        themeActions.removeBlockColor(this.props.defaultColor);
+        this.props.actions.removeBlockColor(this.props.defaultColor);
       }
     }
     render() {
-      const {props, state} = this;
       let cx = React.addons.classSet;
       let style = {
-        backgroundColor: props.color
+        backgroundColor: this.props.color
       };
-      let classNames = cx({ 'preview--blocked': state.blocked, 'preview': true});
+      let classNames = cx({ 'preview--blocked': this.state.blocked, 'preview': true});
       return (
         <div className={classNames} style={style} onClick={this.toggleBlock}>
-          <Tooltip color={props.defaultColor} />
+          <Tooltip color={this.props.defaultColor} />
         </div>
       );
     }
@@ -39,14 +38,13 @@ export default class Previews extends React.Component {
    this.resize();
   }
   resize() {
-    WindowApi.setHeight( Math.ceil(this.props.colors.length / 13) * 50 + 400);
+    WindowApi.setHeight( Math.ceil(this.props.store.colors.length / 13) * 50 + 400);
   }
   render() {
-    const {props, state} = this;
     return (
       <section className="previews" >
-        <For each="color" of={props.colors}>
-          <Preview color={color.newColor} defaultColor={color.defaultColor} />
+        <For each="color" of={this.props.store.colors}>
+          <Preview color={color.newColor} defaultColor={color.defaultColor} actions={this.props.actions} />
         </For>
       </section>
     );

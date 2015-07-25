@@ -7,9 +7,6 @@ import Save from './save';
 
 export default class Main extends React.Component {
   render() {
-    const { props, state } = this;
-    const { upload, save, blockColor, removeBlockColor, setRange } = this.props;
-    
     return (
       <div>
         <nav className="section-header">
@@ -19,26 +16,26 @@ export default class Main extends React.Component {
            </div>
          </nav>
 
-         <If condition={ !state.showOptions }>
+         <If condition={ !this.props.store.showOptions }>
            <section className="section-upload">
-            <Upload />
+            <Upload {...this.props} />
           </section>
         </If>
 
-         <If condition={ state.showOptions }>
+         <If condition={ this.props.store.showOptions }>
           <section className="section-options">
-            <Options />
+            <Options {...this.props} />
           </section>
         </If>
 
-         <If condition={ state.showOptions }>
+         <If condition={ this.props.store.showOptions }>
             <section className="section-previews">
-              <Previews colors={state.colors} />
+              <Previews {...this.props} />
             </section>
         </If>
 
-        <If condition={ state.showOptions }>
-          <Save fileName={state.fileName} />
+        <If condition={ this.props.store.showOptions }>
+          <Save {...this.props} />
         </If>
       </div>
     );

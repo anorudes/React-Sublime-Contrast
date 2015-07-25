@@ -24402,35 +24402,35 @@ exports.setRange = setRange;
 
 var _constantsActionTypes = require('../constants/ActionTypes');
 
-function upload() {
+function upload(filePath) {
   return {
     type: _constantsActionTypes.UPLOAD_THEME,
     filePath: filePath
   };
 }
 
-function save() {
+function save(filePath) {
   return {
     type: _constantsActionTypes.SAVE_THEME,
     filePath: filePath
   };
 }
 
-function blockColor() {
+function blockColor(color) {
   return {
     type: _constantsActionTypes.BLOCK_COLOR,
     color: color
   };
 }
 
-function removeBlockColor() {
+function removeBlockColor(color) {
   return {
     type: _constantsActionTypes.REMOVE_BLOCK_COLOR,
     color: color
   };
 }
 
-function setRange() {
+function setRange(saturate, brightness) {
   return {
     type: _constantsActionTypes.SET_RANGE,
     saturate: saturate,
@@ -25763,15 +25763,6 @@ var Main = (function (_React$Component) {
   _createClass(Main, [{
     key: 'render',
     value: function render() {
-      var props = this.props;
-      var state = this.state;
-      var _props = this.props;
-      var upload = _props.upload;
-      var save = _props.save;
-      var blockColor = _props.blockColor;
-      var removeBlockColor = _props.removeBlockColor;
-      var setRange = _props.setRange;
-
       return _init.React.createElement(
         'div',
         null,
@@ -25793,22 +25784,22 @@ var Main = (function (_React$Component) {
             )
           )
         ),
-        !state.showOptions ? _init.React.createElement(
+        !this.props.store.showOptions ? _init.React.createElement(
           'section',
           { className: 'section-upload' },
-          _init.React.createElement(_upload2['default'], null)
+          _init.React.createElement(_upload2['default'], this.props)
         ) : '',
-        state.showOptions ? _init.React.createElement(
+        this.props.store.showOptions ? _init.React.createElement(
           'section',
           { className: 'section-options' },
-          _init.React.createElement(_options2['default'], null)
+          _init.React.createElement(_options2['default'], this.props)
         ) : '',
-        state.showOptions ? _init.React.createElement(
+        this.props.store.showOptions ? _init.React.createElement(
           'section',
           { className: 'section-previews' },
-          _init.React.createElement(_previews2['default'], { colors: state.colors })
+          _init.React.createElement(_previews2['default'], this.props)
         ) : '',
-        state.showOptions ? _init.React.createElement(_save2['default'], { fileName: state.fileName }) : ''
+        this.props.store.showOptions ? _init.React.createElement(_save2['default'], this.props) : ''
       );
     }
   }]);
@@ -25857,14 +25848,11 @@ var Upload = (function (_React$Component) {
     value: function onChange() {
       var saturate = _init.React.findDOMNode(this.refs.saturate).value;
       var brightness = _init.React.findDOMNode(this.refs.brightness).value;
-      themeActions.setRange(saturate, brightness);
+      this.props.actions.setRange(saturate, brightness);
     }
   }, {
     key: 'render',
     value: function render() {
-      var props = this.props;
-      var state = this.state;
-
       return _init.React.createElement(
         'div',
         { className: 'options' },
@@ -25938,26 +25926,23 @@ var Preview = (function (_React$Component) {
       var blocked = !this.state.blocked;
       this.setState({ blocked: blocked });
       if (blocked) {
-        themeActions.blockColor(this.props.defaultColor);
+        this.props.actions.blockColor(this.props.defaultColor);
       } else {
-        themeActions.removeBlockColor(this.props.defaultColor);
+        this.props.actions.removeBlockColor(this.props.defaultColor);
       }
     }
   }, {
     key: 'render',
     value: function render() {
-      var props = this.props;
-      var state = this.state;
-
       var cx = _init.React.addons.classSet;
       var style = {
-        backgroundColor: props.color
+        backgroundColor: this.props.color
       };
-      var classNames = cx({ 'preview--blocked': state.blocked, 'preview': true });
+      var classNames = cx({ 'preview--blocked': this.state.blocked, 'preview': true });
       return _init.React.createElement(
         'div',
         { className: classNames, style: style, onClick: this.toggleBlock },
-        _init.React.createElement(_tooltip2['default'], { color: props.defaultColor })
+        _init.React.createElement(_tooltip2['default'], { color: this.props.defaultColor })
       );
     }
   }]);
@@ -25989,19 +25974,16 @@ var Previews = (function (_React$Component2) {
   }, {
     key: 'resize',
     value: function resize() {
-      WindowApi.setHeight(Math.ceil(this.props.colors.length / 13) * 50 + 400);
+      WindowApi.setHeight(Math.ceil(this.props.store.colors.length / 13) * 50 + 400);
     }
   }, {
     key: 'render',
     value: function render() {
-      var props = this.props;
-      var state = this.state;
-
       return _init.React.createElement(
         'section',
         { className: 'previews' },
-        props.colors.map(function (color) {
-          return _init.React.createElement(Preview, { color: color.newColor, defaultColor: color.defaultColor });
+        this.props.store.colors.map(function (color) {
+          return _init.React.createElement(Preview, { color: color.newColor, defaultColor: color.defaultColor, actions: this.props.actions });
         }, this)
       );
     }
@@ -26048,9 +26030,6 @@ var Result = (function (_React$Component) {
   _createClass(Result, [{
     key: 'render',
     value: function render() {
-      var props = this.props;
-      var state = this.state;
-
       return _init.React.createElement(
         'section',
         { className: 'result' },
@@ -26062,7 +26041,7 @@ var Result = (function (_React$Component) {
         _init.React.createElement(
           'div',
           { className: 'result__code' },
-          props.themeContent
+          this.props.store.themeContent
         )
       );
     }
@@ -26104,19 +26083,16 @@ var Save = (function (_React$Component) {
   _createClass(Save, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
-      $(_init.React.findDOMNode(this.refs.saveDialog)).attr('nwsaveas', this.props.fileName);
+      $(_init.React.findDOMNode(this.refs.saveDialog)).attr('nwsaveas', this.props.store.fileName);
     }
   }, {
     key: 'onSave',
     value: function onSave() {
-      themeActions.saveTheme();
+      this.props.actions.save();
     }
   }, {
     key: 'render',
     value: function render() {
-      var props = this.props;
-      var state = this.state;
-
       return _init.React.createElement(
         'div',
         null,
@@ -26174,12 +26150,9 @@ var TooltipColor = (function (_React$Component) {
   _createClass(TooltipColor, [{
     key: "render",
     value: function render() {
-      var props = this.props;
-      var state = this.state;
-
       var cx = _init.React.addons.classSet;
       var style = {
-        backgroundColor: props.color
+        backgroundColor: this.props.color
       };
       return _init.React.createElement("div", { className: "preview__default-color", style: style });
     }
@@ -26228,14 +26201,11 @@ var Upload = (function (_React$Component) {
     key: 'onChangeFile',
     value: function onChangeFile() {
       var filePath = _init.React.findDOMNode(this.refs.file).value;
-      themeActions.uploadTheme(filePath);
+      this.props.actions.upload(filePath);
     }
   }, {
     key: 'render',
     value: function render() {
-      var props = this.props;
-      var state = this.state;
-
       return _init.React.createElement(
         'div',
         { className: 'upload' },
@@ -26416,7 +26386,7 @@ var ContrastApp = (function (_Component) {
       var dispatch = _props.dispatch;
 
       return _react2['default'].createElement(
-        Connector,
+        _reduxReact.Connector,
         { select: function (state) {
             return { store: state.store };
           } },
@@ -26525,7 +26495,7 @@ function store(state, action) {
   };
 
   switch (action.type) {
-    case UPLOAD_THEME:
+    case _constantsActionTypes.UPLOAD_THEME:
       var filePath = action.filePath;
       var themeContent = fs.readFileSync(filePath, 'utf8');
       newState.showOptions = true;
@@ -26535,7 +26505,7 @@ function store(state, action) {
       updateTheme(newState);
       return newState;
 
-    case BLOCK_COLOR:
+    case _constantsActionTypes.BLOCK_COLOR:
       var color = action.color;
       var blockedColors = newState.blockedColors;
       if (blockedColors.indexOf(color) === -1) {
@@ -26545,7 +26515,7 @@ function store(state, action) {
       updateTheme(newState);
       return newState;
 
-    case REMOVE_BLOCK_COLOR:
+    case _constantsActionTypes.REMOVE_BLOCK_COLOR:
       var color = action.color;
       var blockedColors = newState.blockedColors;
       var index = blockedColors.indexOf(color);
@@ -26554,7 +26524,7 @@ function store(state, action) {
       updateTheme(newState);
       return newState;
 
-    case SAVE_THEME:
+    case _constantsActionTypes.SAVE_THEME:
       var filePath = action.filePath;
       var chooser = $('#saveDialog');
       var fileName = newState.fileName;
@@ -26567,7 +26537,7 @@ function store(state, action) {
       chooser.trigger('click');
       return newState;
 
-    case SET_RANGE:
+    case _constantsActionTypes.SET_RANGE:
       var saturate = action.saturate;
       var brightness = action.brightness;
       newState.saturatePercentage = saturate;

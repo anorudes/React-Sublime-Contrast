@@ -6,13 +6,12 @@ export default class Save extends React.Component {
     this.onSave = this.onSave.bind(this);
   }
   componentDidMount() {
-      $(React.findDOMNode(this.refs.saveDialog)).attr('nwsaveas', this.props.fileName);
+      $(React.findDOMNode(this.refs.saveDialog)).attr('nwsaveas', this.props.store.fileName);
   }
   onSave() {
-    themeActions.saveTheme();
+    this.props.actions.save();
   }
     render() {
-      const {props, state} = this;
       return (
         <div>
           <input type="file" ref="saveDialog" id="saveDialog" hidden />

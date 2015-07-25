@@ -12,10 +12,9 @@ export default class Upload extends React.Component {
   onChange() {
     let saturate = React.findDOMNode(this.refs.saturate).value;
     let brightness = React.findDOMNode(this.refs.brightness).value;
-    themeActions.setRange(saturate, brightness);
+    this.props.actions.setRange(saturate, brightness);
   }
   render() {
-    const {props, state} = this;
     return (
       <div className="options">
            <p className="range-field">

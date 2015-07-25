@@ -1,6 +1,7 @@
 import Reflux from 'reflux';
 import Parser from '../api/parser';
-import { INCREMENT_COUNTER, DECREMENT_COUNTER } from '../constants/ActionTypes';
+import { UPLOAD_THEME, SAVE_THEME, SET_RANGE, BLOCK_COLOR, REMOVE_BLOCK_COLOR } from '../constants/ActionTypes';
+
 
 let initialState = {
   filePath: null,
