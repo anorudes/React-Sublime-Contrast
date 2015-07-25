@@ -9,7 +9,7 @@ This app allows you to change the saturation and brightness of any Sublime Text 
 3) Save the result<br />
 <br />
 **It's built using the following technologies:**
-gulp, react es6, babel es7 annotations, reflux, node-webkit
+gulp, react es6, babel es7 annotations, redux, node-webkit
 
 ## Demo video
 ```
