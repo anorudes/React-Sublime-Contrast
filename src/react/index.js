@@ -1,20 +1,11 @@
 import { React } from './init';
-import Main from './main';
+import App from './containers/App';
 
-class App {
-  static config() {
-    WindowApi.init();
-  }
-  static render() {
-    React.render(
-      <Main />,
-      document.getElementById('app')
-    );
-  }
-}
+WindowApi.init();
 
-App.config();
-App.render();
-
+React.render(
+  <App />,
+  document.getElementById('app')
+);
 
 

@@ -1,16 +1,15 @@
-import {React, Reflux, reactMixin} from './init';
+import {React, Reflux, reactMixin} from '../init';
+import Upload from './upload';
+import Result from './result';
+import Options from './options';
+import Previews from './previews';
+import Save from './save';
 
-import Upload from './components/upload';
-import Result from './components/result';
-import Options from './components/options';
-import Previews from './components/previews';
-import Save from './components/save';
-import themeStore from './stores/theme';
-
-@reactMixin.decorate(Reflux.connect(themeStore))
 export default class Main extends React.Component {
   render() {
-    const {props, state} = this;
+    const { props, state } = this;
+    const { upload, save, blockColor, removeBlockColor, setRange } = this.props;
+    
     return (
       <div>
         <nav className="section-header">

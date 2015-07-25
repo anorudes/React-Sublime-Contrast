@@ -1,5 +1,4 @@
 import {React, Reflux, reactMixin} from '../init';
-import themeActions from '../actions/theme';
 import Tooltip from './tooltip';
 
 class Preview extends React.Component {

@@ -1,6 +1,5 @@
 import {React, Reflux, reactMixin} from '../init';
 import ParserApi from '../api/parser';
-import themeActions from '../actions/theme';
 
 export default class Result extends React.Component {
   render() {

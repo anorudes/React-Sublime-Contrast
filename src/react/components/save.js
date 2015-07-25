@@ -1,5 +1,4 @@
 import {React, Reflux, reactMixin} from '../init';
-import themeActions from '../actions/theme';
 
 export default class Save extends React.Component {
   constructor(props) {
