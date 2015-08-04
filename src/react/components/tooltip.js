@@ -1,4 +1,4 @@
-import {React, Reflux, reactMixin} from '../init';
+import React from 'react/addons';
 
 export default class TooltipColor extends React.Component {
   render() {

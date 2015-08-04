@@ -1,4 +1,4 @@
-import {React, Reflux, reactMixin} from '../init';
+import React from 'react/addons';
 import Tooltip from './tooltip';
 
 class Preview extends React.Component {

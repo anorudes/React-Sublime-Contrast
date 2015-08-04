@@ -1,4 +1,4 @@
-import { React } from './init';
+import React from 'react/addons';
 import App from './containers/App';
 
 WindowApi.init();

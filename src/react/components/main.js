@@ -1,4 +1,4 @@
-import {React, Reflux, reactMixin} from '../init';
+import React from 'react/addons';
 import Upload from './upload';
 import Result from './result';
 import Options from './options';
